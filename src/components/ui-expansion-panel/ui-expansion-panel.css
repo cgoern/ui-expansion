@@ -3,7 +3,7 @@
 }
 
 :host([expanded]) {
-  --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height);
+  --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height, auto);
 }
 
 .details {
