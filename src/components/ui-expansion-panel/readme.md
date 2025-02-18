@@ -38,15 +38,17 @@ A custom expansion panel component that can expand and collapse to show or hide 
 
 ## CSS Custom Properties
 
-| Name                                                    | Description                                                                          |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `--UI-Expansion-Panel-Background`                       | Background color of the expansion panel.                                             |
-| `--UI-Expansion-Panel-BoxShadow`                        | Box shadow of the expansion panel.                                                   |
-| `--UI-Expansion-Panel-Details-TransitionDuration`       | Duration of the transition effect when expanding or collapsing the panel.            |
-| `--UI-Expansion-Panel-Details-TransitionProperty`       | Transition property of the transition effect when expanding or collapsing the panel. |
-| `--UI-Expansion-Panel-Details-TransitionTimingFunction` | Timing function of the transition effect when expanding or collapsing the panel.     |
-| `--UI-Expansion-Panel-Expanded-Background`              | Background color of the expansion panel when expanded.                               |
-| `--UI-Expansion-Panel-Expanded-BoxShadow`               | Box shadow of the expansion panel when expanded.                                     |
+| Name                                            | Description                                                                          |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `--UI-Expansion-Panel-Background`               | Background of the expansion panel.                                                   |
+| `--UI-Expansion-Panel-BorderRadius`             | Border radius of the expansion panel.                                                |
+| `--UI-Expansion-Panel-BoxShadow`                | Box shadow of the expansion panel.                                                   |
+| `--UI-Expansion-Panel-Details-BoxShadow`        | Box shadow of the expansion panel details.                                           |
+| `--UI-Expansion-Panel-Expanded-Background`      | Background color of the expansion panel when expanded.                               |
+| `--UI-Expansion-Panel-Expanded-BoxShadow`       | Box shadow of the expansion panel when expanded.                                     |
+| `--UI-Expansion-Panel-TransitionDuration`       | Duration of the transition effect when expanding or collapsing the panel.            |
+| `--UI-Expansion-Panel-TransitionProperty`       | Transition property of the transition effect when expanding or collapsing the panel. |
+| `--UI-Expansion-Panel-TransitionTimingFunction` | Timing function of the transition effect when expanding or collapsing the panel.     |
 
 ---
 
