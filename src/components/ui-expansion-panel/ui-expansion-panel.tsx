@@ -1,4 +1,4 @@
-import { Component, Host, Element, Prop, h } from '@stencil/core'
+import { Component, Host, Element, Prop, Event, EventEmitter, h } from '@stencil/core'
 
 /**
  * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -58,10 +58,36 @@ export class UiExpansionPanel {
   @Element() element: HTMLUiExpansionPanelElement
 
   /**
+   * Event emitted when the expansion panel is toggled.
+   * This event is fired whenever the panel is expanded or collapsed,
+   * providing the current expanded state and a reference to the panel element.
+   *
+   * @event uiExpansionPanelToggle
+   * @type {CustomEvent<{expanded: boolean, element: HTMLUiExpansionPanelElement}>}
+   * @property {boolean} expanded - Indicates whether the panel is expanded (true) or collapsed (false).
+   * @property {HTMLUiExpansionPanelElement} element - The instance of the expansion panel element.
+   * @property {string} id - An optional unique identifier for the panel.
+   */
+  @Event() uiExpansionPanelToggle: EventEmitter<{
+    expanded: boolean
+    element: HTMLUiExpansionPanelElement
+    id?: string
+  }>
+
+  /**
    * Determines whether the panel is expanded or collapsed.
    * @default false
    */
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false
+
+  /**
+   * A unique identifier for the expansion panel.
+   * This property can be used to distinguish between multiple expansion panels
+   * in the same context, allowing for better management and control of individual panels.
+   *
+   * @type {string}
+   */
+  @Prop() _id: string
 
   /**
    * Lifecycle method that is called when the component is first connected to the DOM.
@@ -150,6 +176,8 @@ export class UiExpansionPanel {
    * If the panel is currently expanded, it will collapse, and if it is collapsed, it will expand.
    * This method updates the CSS custom property for the expanded height of the details element
    * and uses requestAnimationFrame to ensure smooth transitions.
+   * It also emits the uiExpansionPanelToggle event with the current expanded state,
+   * the panel element, and optionally the panel's unique identifier.
    */
   private toggleExpanded = (): void => {
     if (this.animationFrameInstance !== null) {
@@ -169,6 +197,12 @@ export class UiExpansionPanel {
 
       this.expanded = !this.expanded
       this.animationFrameInstance = null
+    })
+
+    this.uiExpansionPanelToggle.emit({
+      expanded: this.expanded,
+      element: this.element,
+      ...(this._id !== undefined && { id: this._id }),
     })
   }
 

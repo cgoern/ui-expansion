@@ -11,17 +11,37 @@ export namespace Components {
      */
     interface UiExpansionPanel {
         /**
+          * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
+          * @type {string}
+         */
+        "_id": string;
+        /**
           * Determines whether the panel is expanded or collapsed.
           * @default false
          */
         "expanded": boolean;
     }
 }
+export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUiExpansionPanelElement;
+}
 declare global {
+    interface HTMLUiExpansionPanelElementEventMap {
+        "uiExpansionPanelToggle": {expanded: boolean, element: HTMLUiExpansionPanelElement, id?: string};
+    }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
      */
     interface HTMLUiExpansionPanelElement extends Components.UiExpansionPanel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUiExpansionPanelElementEventMap>(type: K, listener: (this: HTMLUiExpansionPanelElement, ev: UiExpansionPanelCustomEvent<HTMLUiExpansionPanelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUiExpansionPanelElementEventMap>(type: K, listener: (this: HTMLUiExpansionPanelElement, ev: UiExpansionPanelCustomEvent<HTMLUiExpansionPanelElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUiExpansionPanelElement: {
         prototype: HTMLUiExpansionPanelElement;
@@ -37,10 +57,24 @@ declare namespace LocalJSX {
      */
     interface UiExpansionPanel {
         /**
+          * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
+          * @type {string}
+         */
+        "_id"?: string;
+        /**
           * Determines whether the panel is expanded or collapsed.
           * @default false
          */
         "expanded"?: boolean;
+        /**
+          * Event emitted when the expansion panel is toggled. This event is fired whenever the panel is expanded or collapsed, providing the current expanded state and a reference to the panel element.
+          * @event uiExpansionPanelToggle
+          * @type {CustomEvent<{expanded: boolean, element: HTMLUiExpansionPanelElement}>}
+          * @property {boolean} expanded - Indicates whether the panel is expanded (true) or collapsed (false).
+          * @property {HTMLUiExpansionPanelElement} element - The instance of the expansion panel element.
+          * @property {string} id - An optional unique identifier for the panel.
+         */
+        "onUiExpansionPanelToggle"?: (event: UiExpansionPanelCustomEvent<{expanded: boolean, element: HTMLUiExpansionPanelElement, id?: string}>) => void;
     }
     interface IntrinsicElements {
         "ui-expansion-panel": UiExpansionPanel;

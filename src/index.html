@@ -83,5 +83,13 @@
         </div>
       </div>
     </ui-expansion-panel>
+
+    <script>
+      ;(() => {
+        window.window.addEventListener('uiExpansionPanelToggle', (event) => {
+          console.log(event.detail)
+        })
+      })()
+    </script>
   </body>
 </html>
