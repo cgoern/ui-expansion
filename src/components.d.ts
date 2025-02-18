@@ -7,8 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     /**
-     * @component UiExpansionPanel
-     * @description A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide content.
      */
     interface UiExpansionPanel {
         /**
@@ -20,8 +19,7 @@ export namespace Components {
 }
 declare global {
     /**
-     * @component UiExpansionPanel
-     * @description A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide content.
      */
     interface HTMLUiExpansionPanelElement extends Components.UiExpansionPanel, HTMLStencilElement {
     }
@@ -35,8 +33,7 @@ declare global {
 }
 declare namespace LocalJSX {
     /**
-     * @component UiExpansionPanel
-     * @description A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide content.
      */
     interface UiExpansionPanel {
         /**
@@ -54,8 +51,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             /**
-             * @component UiExpansionPanel
-             * @description A custom expansion panel component that can expand and collapse to show or hide content.
+             * A custom expansion panel component that can expand and collapse to show or hide content.
              */
             "ui-expansion-panel": LocalJSX.UiExpansionPanel & JSXBase.HTMLAttributes<HTMLUiExpansionPanelElement>;
         }

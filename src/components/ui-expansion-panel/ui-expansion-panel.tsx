@@ -1,8 +1,10 @@
 import { Component, Host, Element, Prop, h } from '@stencil/core'
 
 /**
- * @component UiExpansionPanel
- * @description A custom expansion panel component that can expand and collapse to show or hide content.
+ * A custom expansion panel component that can expand and collapse to show or hide content.
+ *
+ * @slot header - Content is placed in the header which toggles the expansion state.
+ * @slot content - Content is placed in the content area which is expanded or collapsed.
  */
 @Component({
   tag: 'ui-expansion-panel',
