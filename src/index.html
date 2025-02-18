@@ -8,7 +8,11 @@
     <script nomodule src="/build/ui-expansion-panel.js"></script>
     <style>
       :root {
-        /* --UI-Expansion-Panel-TransitionDuration: 2s; */
+        --UI-Expansion-Panel-TransitionDuration: 1s;
+        --UI-Expansion-Panel-Expanded-BoxShadow:
+          0 0 0 0.0625rem oklch(0% 0 0 / 10%), 0 0.25rem 1rem -0.25rem oklch(0% 0 0 / 10%),
+          0 0.5rem 2rem -0.5rem oklch(0% 0 0 / 10%), 0 1rem 4rem -1rem oklch(0% 0 0 / 10%),
+          0 2rem 8rem -2rem oklch(0% 0 0 / 10%), inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%);
       }
       * {
         line-height: round(nearest, calc((16px / 1.6) + 1em), 2px);
