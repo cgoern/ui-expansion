@@ -7,6 +7,9 @@
     <script type="module" src="/build/ui-expansion-panel.esm.js"></script>
     <script nomodule src="/build/ui-expansion-panel.js"></script>
     <style>
+      :root {
+        /* --UI-Expansion-Panel-TransitionDuration: 2s; */
+      }
       * {
         line-height: round(nearest, calc((16px / 1.6) + 1em), 2px);
       }
@@ -25,10 +28,18 @@
         font-family: system-ui;
         margin: 0;
         padding: 1rem;
+        box-sizing: border-box;
       }
 
-      ui-expansion-panel:not(:defined) {
+      ui-expansion-panel:not(:defined),
+      ui-expansion-panel-folder:not(:defined) {
         visibility: hidden;
+      }
+
+      ui-expansion-panel-folder {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
       }
 
       .header {
@@ -43,53 +54,47 @@
     </style>
   </head>
   <body>
-    <ui-expansion-panel expanded>
-      <div slot="header" class="header">UI Expansion Panel</div>
-      <div slot="content" class="content">
-        <div>
-          Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
-          molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet
-          suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+    <ui-expansion-panel-folder>
+      <ui-expansion-panel expanded>
+        <div slot="header" class="header">UI Expansion Panel</div>
+        <div slot="content" class="content">
+          <div>
+            Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut
+            consequuntur excepturi nulla. Fuga voluptate aperiam odio consectetur aliquid itaque
+            incidunt quos. Expedita iste vero molestiae fugiat sit velit qui. Ratione eligendi et
+            eaque eum numquam quia laborum. Aut ea non atque qui ex accusantium.
+          </div>
         </div>
-      </div>
-    </ui-expansion-panel>
-    <ui-expansion-panel>
-      <div slot="header" class="header">UI Expansion Panel</div>
-      <div slot="content" class="content">
-        <div>
-          Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
-          molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet
-          suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+      </ui-expansion-panel>
+      <ui-expansion-panel>
+        <div slot="header" class="header">UI Expansion Panel</div>
+        <div slot="content" class="content">
+          <div>
+            Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum
+            deleniti mollitia quia velit. Dolorem dolorem distinctio sit qui modi tempora quis quia.
+          </div>
         </div>
-      </div>
-    </ui-expansion-panel>
-    <ui-expansion-panel>
-      <div slot="header" class="header">UI Expansion Panel</div>
-      <div slot="content" class="content">
-        <div>
-          Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
-          molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet
-          suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+      </ui-expansion-panel>
+      <ui-expansion-panel>
+        <div slot="header" class="header">UI Expansion Panel</div>
+        <div slot="content" class="content">
+          <div>
+            Incidunt consequatur reiciendis enim iure voluptatem. Officiis magni et ut sit.
+            Quibusdam et illo quae. Sunt at numquam facere qui nesciunt. Reiciendis sapiente enim
+            natus quisquam blanditiis ea omnis eos. Sequi accusantium quia dicta omnis aut velit.
+          </div>
         </div>
-      </div>
-    </ui-expansion-panel>
-    <ui-expansion-panel>
-      <div slot="header" class="header">UI Expansion Panel</div>
-      <div slot="content" class="content">
-        <div>
-          Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
-          molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet
-          suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+      </ui-expansion-panel>
+      <ui-expansion-panel>
+        <div slot="header" class="header">UI Expansion Panel</div>
+        <div slot="content" class="content">
+          <div>
+            Culpa non aut vel qui veniam ullam praesentium ea. Aspernatur a cumque assumenda maiores
+            hic quo. Facilis est repudiandae neque autem a animi. Quia quis nemo nostrum ullam
+            possimus vel sunt.
+          </div>
         </div>
-      </div>
-    </ui-expansion-panel>
-
-    <script>
-      ;(() => {
-        window.window.addEventListener('uiExpansionPanelToggle', (event) => {
-          console.log(event.detail)
-        })
-      })()
-    </script>
+      </ui-expansion-panel>
+    </ui-expansion-panel-folder>
   </body>
 </html>
