@@ -1,81 +1,173 @@
 import { Component, Host, Element, Prop, h } from '@stencil/core'
 
 /**
- * @component UIExpansionPanel
- * @description A custom web component that provides an expandable/collapsible panel.
- * The panel consists of a header and a details section. The details section can be expanded or collapsed by clicking on the header.
+ * @component UiExpansionPanel
+ * @description A custom expansion panel component that can expand and collapse to show or hide content.
  */
 @Component({
   tag: 'ui-expansion-panel',
   styleUrl: 'ui-expansion-panel.css',
   shadow: true,
 })
-export class UIExpansionPanel {
+export class UiExpansionPanel {
+  /**
+   * A reference to the details element within the component.
+   * This property is used to access the details element's scroll height and to observe changes in its size.
+   */
   private detailsElement!: HTMLDivElement
+
+  /**
+   * A ResizeObserver instance used to monitor changes in the size of the details element.
+   * This observer triggers the updateDetailsScrollHeight method whenever the size of the details element changes,
+   * ensuring that the component can accurately adjust its height during expansion and collapse.
+   */
+  private resizeObserver: ResizeObserver
+
+  /**
+   * The scroll height of the details element.
+   * This property is used to store the current scroll height of the details element,
+   * which is necessary for calculating the expanded height during the expansion and collapse transitions.
+   * It is updated whenever the size of the details element changes.
+   */
   private detailsScrollHeight: number = 0
 
   /**
-   * Reference to the host element.
+   * An instance of the animation frame.
+   * This property is used to store the ID of the currently scheduled animation frame,
+   * allowing the component to cancel any pending animation frames if necessary.
+   * It is set to null when no animation frame is scheduled.
+   */
+  private animationFrameInstance: number | null
+
+  /**
+   * A collection of stylesheets used to manage CSS custom properties.
+   * This property is used to store the stylesheets that are either adopted or part of the shadow DOM.
+   * It is initialized in the connectedCallback method and used to dynamically update CSS custom properties
+   * for the component's expanded height during expansion and collapse transitions.
+   */
+  private styleSheets: CSSStyleSheet[] | StyleSheetList
+
+  /**
+   * The host element of the component.
+   * This property is automatically populated by Stencil and provides a reference
+   * to the custom element instance. It can be used to access the element's
+   * shadow DOM, attributes, and other properties.
    */
   @Element() element: HTMLUiExpansionPanelElement
 
   /**
-   * Indicates whether the panel is expanded or collapsed.
-   * @type {boolean}
+   * Determines whether the panel is expanded or collapsed.
    * @default false
    */
-  @Prop({reflect: true, mutable: true}) expanded: boolean = false
+  @Prop({ reflect: true, mutable: true }) expanded: boolean = false
 
   /**
-   * Lifecycle method that is called once the component has loaded.
-   * Sets up a ResizeObserver to monitor changes in the details section's height.
+   * Lifecycle method that is called when the component is first connected to the DOM.
+   * Initializes the ResizeObserver to monitor changes in the details element's size
+   * and sets up the styleSheets property to manage CSS custom properties.
    */
-  componentDidLoad() {
-    const resizeObserver = new ResizeObserver(() => {
+  connectedCallback() {
+    this.resizeObserver = new ResizeObserver(() => {
       this.updateDetailsScrollHeight()
     })
 
-    resizeObserver.observe(this.detailsElement)
+    this.styleSheets = this.element.shadowRoot.adoptedStyleSheets
+      ? this.element.shadowRoot.adoptedStyleSheets
+      : this.element.shadowRoot.styleSheets
   }
 
   /**
-   * Calculates and updates the scroll height of the details section.
-   * If the height has changed, it updates the CSS variable for the expanded height.
+   * Lifecycle method that is called once the component has loaded.
+   * Sets up a ResizeObserver to monitor changes in the details element's size
+   * and adds an event listener for the transitionend event.
    */
-  private updateDetailsScrollHeight(): void {
-    const observedDetailsScrollHeight = this.detailsElement.scrollHeight
+  componentDidLoad() {
+    this.resizeObserver.observe(this.detailsElement)
+    this.detailsElement.addEventListener('transitionend', this.handleTransitionEnd)
+  }
 
-    if (observedDetailsScrollHeight !== this.detailsScrollHeight) {
-      this.detailsScrollHeight = observedDetailsScrollHeight
-      this.updateExpandedHeightProperty(`${this.detailsScrollHeight}px`)
+  /**
+   * Lifecycle method that is called once the component is disconnected from the DOM.
+   * Cleans up the ResizeObserver and event listeners to prevent memory leaks.
+   * Cancels any pending animation frames to ensure no unnecessary updates occur.
+   */
+  disconnectedCallback() {
+    this.resizeObserver.disconnect()
+    this.detailsElement.removeEventListener('transitionend', this.handleTransitionEnd)
+
+    if (this.animationFrameInstance !== null) {
+      cancelAnimationFrame(this.animationFrameInstance)
     }
   }
 
   /**
-   * Updates the CSS variable for the expanded height of the details section.
-   * @param {string} value - The new height value to set.
+   * Updates the scroll height of the details element.
    */
-  private updateExpandedHeightProperty(value: string): void {
-    const styleSheets = this.element.shadowRoot.adoptedStyleSheets
-      ? this.element.shadowRoot.adoptedStyleSheets
-      : this.element.shadowRoot.styleSheets
+  private updateDetailsScrollHeight = (): void => {
+    const observedDetailsScrollHeight = this.detailsElement.scrollHeight
 
-    if (styleSheets instanceof StyleSheetList) {
-      styleSheets[0].insertRule(`:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`)
-    } else {
-      const styleSheetAddition = new CSSStyleSheet()
-      styleSheetAddition.replaceSync(
+    if (observedDetailsScrollHeight !== this.detailsScrollHeight) {
+      this.detailsScrollHeight = observedDetailsScrollHeight
+    }
+  }
+
+  /**
+   * Updates the CSS custom property for the expanded height of the details element.
+   *
+   * @param {string} value - The value to set for the expanded height.
+   */
+  private updateExpandedHeightProperty = (value: string): void => {
+    if (this.styleSheets instanceof StyleSheetList) {
+      this.styleSheets[0].insertRule(
         `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`,
       )
-      this.element.shadowRoot.adoptedStyleSheets = [...styleSheets, styleSheetAddition]
+    } else {
+      const styleSheetsAddition = new CSSStyleSheet()
+
+      styleSheetsAddition.replaceSync(
+        `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`,
+      )
+
+      this.element.shadowRoot.adoptedStyleSheets = [...this.styleSheets, styleSheetsAddition]
+    }
+  }
+
+  /**
+   * Handles the transitionend event to set the expanded height to 'auto' after the transition ends.
+   *
+   * @param {TransitionEvent} event - The transitionend event.
+   */
+  private handleTransitionEnd = (event: TransitionEvent): void => {
+    if (event.propertyName === 'height' && this.expanded) {
+      this.updateExpandedHeightProperty('auto')
     }
   }
 
   /**
    * Toggles the expanded state of the panel.
+   * If the panel is currently expanded, it will collapse, and if it is collapsed, it will expand.
+   * This method updates the CSS custom property for the expanded height of the details element
+   * and uses requestAnimationFrame to ensure smooth transitions.
    */
-  private toggleExpanded(): void {
-    this.expanded = !this.expanded
+  private toggleExpanded = (): void => {
+    if (this.animationFrameInstance !== null) {
+      cancelAnimationFrame(this.animationFrameInstance)
+    }
+
+    this.animationFrameInstance = requestAnimationFrame(() => {
+      if (this.expanded) {
+        this.updateExpandedHeightProperty(`${this.detailsScrollHeight}px`)
+
+        requestAnimationFrame(() => {
+          this.updateExpandedHeightProperty('0px')
+        })
+      } else {
+        this.updateExpandedHeightProperty(`${this.detailsScrollHeight}px`)
+      }
+
+      this.expanded = !this.expanded
+      this.animationFrameInstance = null
+    })
   }
 
   /**
@@ -84,7 +176,7 @@ export class UIExpansionPanel {
   render() {
     return (
       <Host>
-        <div class="header" onClick={() => this.toggleExpanded()}>
+        <div class="header" onClick={this.toggleExpanded}>
           <slot name="header" />
         </div>
         <div class="details" ref={(element) => (this.detailsElement = element)}>

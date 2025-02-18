@@ -35,6 +35,7 @@
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
+    "preview": "stencil build --watch --serve",
     "generate": "stencil generate",
     "format": "prettier --write ."
   },

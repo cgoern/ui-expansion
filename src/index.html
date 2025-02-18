@@ -7,31 +7,87 @@
     <script type="module" src="/build/ui-expansion-panel.esm.js"></script>
     <script nomodule src="/build/ui-expansion-panel.js"></script>
     <style>
+      html {
+        height: 100%;
+      }
+
       body {
+        display: grid;
+        grid-template-columns: min(100%, 512px);
+        align-content: center;
+        justify-content: center;
+        min-height: 100%;
         font-family: system-ui;
         margin: 0;
         padding: 0;
       }
+
+      ui-expansion-panel:not(:defined) {
+        visibility: hidden;
+      }
+
+      ui-expansion-panel {
+        background: lightgray;
+      }
+
+      .header {
+        font-weight: bold;
+        background: gray;
+        color: white;
+      }
     </style>
   </head>
   <body>
-    <div style="max-width: 512px; background: gray">
+    <div>
       <ui-expansion-panel>
-        <div slot="header">UI Expansion Panel</div>
+        <div slot="header" class="header">UI Expansion Panel</div>
         <div slot="content">
           <div>
-            This is the content of the expansion panel. This is another content of the expansion
-            panel.
+            Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
+            molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in
+            amet suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
           </div>
-          <div>This is another content of the expansion panel.</div>
-          <div>This is yet another content of the expansion panel.</div>
-          <div>This is the final content of the expansion panel.</div>
-          <div>This is the last content of the expansion panel. Of the expansion panel.</div>
-          <div>This is the final content of the expansion panel.</div>
-          <div>This is the last content of the expansion panel.</div>
           <div>
-            This is the final content of the expansion panel. This is the last content of the
-            expansion.
+            Culpa eligendi vero explicabo. Omnis odit corporis aut est saepe et a eum. Qui
+            repudiandae dolore porro dolorem sint quibusdam est.
+          </div>
+          <div>
+            Perferendis quidem eos tempora nobis. Praesentium molestiae debitis sapiente. Ipsa
+            consequuntur soluta quia.
+          </div>
+          <div>
+            Commodi voluptas unde consequatur. Libero ipsam optio eaque aut fugit laborum et. Est
+            facere exercitationem fugit.
+          </div>
+          <div>
+            Ut non rerum non. Vitae pariatur voluptatem aliquam labore sit. Ratione a eveniet soluta
+            accusamus. Quisquam non est quaerat.
+          </div>
+        </div>
+      </ui-expansion-panel>
+      <ui-expansion-panel>
+        <div slot="header" class="header">UI Expansion Panel</div>
+        <div slot="content">
+          <div>
+            Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus
+            molestiae beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in
+            amet suscipit ea eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+          </div>
+          <div>
+            Culpa eligendi vero explicabo. Omnis odit corporis aut est saepe et a eum. Qui
+            repudiandae dolore porro dolorem sint quibusdam est.
+          </div>
+          <div>
+            Perferendis quidem eos tempora nobis. Praesentium molestiae debitis sapiente. Ipsa
+            consequuntur soluta quia.
+          </div>
+          <div>
+            Commodi voluptas unde consequatur. Libero ipsam optio eaque aut fugit laborum et. Est
+            facere exercitationem fugit.
+          </div>
+          <div>
+            Ut non rerum non. Vitae pariatur voluptatem aliquam labore sit. Ratione a eveniet soluta
+            accusamus. Quisquam non est quaerat.
           </div>
         </div>
       </ui-expansion-panel>
