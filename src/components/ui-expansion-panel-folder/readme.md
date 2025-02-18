@@ -18,7 +18,7 @@
       eaque sed quidem. Autem corporis libero quasi recusandae omnis.
     </div>
   </ui-expansion-panel>
-  <ui-expansion-panel expanded>
+  <ui-expansion-panel>
     <div slot="header">UI Expansion Panel Header</div>
     <div slot="content">
       Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
