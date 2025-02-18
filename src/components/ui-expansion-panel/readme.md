@@ -38,10 +38,15 @@ A custom expansion panel component that can expand and collapse to show or hide 
 
 ## CSS Custom Properties
 
-| Name                                                      | Description                                                                      |
-| --------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `--UI-Expansion-Panel-Details-Transition-Duration`        | Duration of the transition effect when expanding or collapsing the panel.        |
-| `--UI-Expansion-Panel-Details-Transition-Timing-Function` | Timing function of the transition effect when expanding or collapsing the panel. |
+| Name                                                    | Description                                                                          |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `--UI-Expansion-Panel-Background`                       | Background color of the expansion panel.                                             |
+| `--UI-Expansion-Panel-BoxShadow`                        | Box shadow of the expansion panel.                                                   |
+| `--UI-Expansion-Panel-Details-TransitionDuration`       | Duration of the transition effect when expanding or collapsing the panel.            |
+| `--UI-Expansion-Panel-Details-TransitionProperty`       | Transition property of the transition effect when expanding or collapsing the panel. |
+| `--UI-Expansion-Panel-Details-TransitionTimingFunction` | Timing function of the transition effect when expanding or collapsing the panel.     |
+| `--UI-Expansion-Panel-Expanded-Background`              | Background color of the expansion panel when expanded.                               |
+| `--UI-Expansion-Panel-Expanded-BoxShadow`               | Box shadow of the expansion panel when expanded.                                     |
 
 ---
 

@@ -1,31 +1,51 @@
 :host {
+  /**
+   * @prop --UI-Expansion-Panel-Background: Background color of the expansion panel.
+   */
+  background: var(--UI-Expansion-Panel-Background, white);
+
+  /**
+   * @prop --UI-Expansion-Panel-BoxShadow: Box shadow of the expansion panel.
+   */
+  box-shadow: var(--UI-Expansion-Panel-BoxShadow, none);
+
   display: block;
 }
 
 :host([expanded]) {
+  /**
+   * @prop --UI-Expansion-Panel-Expanded-Background: Background color of the expansion panel when expanded.
+   */
+  --UI-Expansion-Panel-Background: var(--UI-Expansion-Panel-Expanded-Background, white);
+
+  /**
+   * @prop --UI-Expansion-Panel-Expanded-BoxShadow: Box shadow of the expansion panel when expanded.
+   */
+  --UI-Expansion-Panel-BoxShadow: var(--UI-Expansion-Panel-Expanded-BoxShadow, none);
+
   --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height, auto);
 }
 
 .details {
+  /**
+   * @prop --UI-Expansion-Panel-Details-TransitionProperty: Transition property of the transition effect when expanding or collapsing the panel.
+   */
+  transition-property: var(--UI-Expansion-Panel-Details-TransitionProperty, height);
+
+  /**
+   * @prop --UI-Expansion-Panel-Details-TransitionDuration: Duration of the transition effect when expanding or collapsing the panel.
+   */
+  transition-duration: var(--UI-Expansion-Panel-Details-TransitionDuration, 0.25s);
+
+  /**
+   * @prop --UI-Expansion-Panel-Details-TransitionTimingFunction: Timing function of the transition effect when expanding or collapsing the panel.
+   */
+  transition-timing-function: var(
+    --UI-Expansion-Panel-Details-TransitionTimingFunction,
+    cubic-bezier(0.25, 1, 0.5, 1)
+  );
+
   height: var(--UI-Expansion-Panel-Details-Height, 0);
   overflow: hidden;
   will-change: height;
-  transition-property: height;
-
-  /**
-   * @prop --UI-Expansion-Panel-Details-Transition-Duration: Duration of the transition effect when expanding or collapsing the panel.
-   */
-  transition-duration: var(--UI-Expansion-Panel-Details-Transition-Duration, 0.25s);
-
-  /**
-   * @prop --UI-Expansion-Panel-Details-Transition-Timing-Function: Timing function of the transition effect when expanding or collapsing the panel.
-   */
-  transition-timing-function: var(
-    --UI-Expansion-Panel-Details-Transition-Timing-Function,
-    cubic-bezier(0.25, 1, 0.5, 1)
-  );
-}
-
-.content {
-  padding: 1rem;
 }
