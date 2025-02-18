@@ -6,56 +6,64 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    /**
+     * @component UIExpansionPanel
+     * @description A custom web component that provides an expandable/collapsible panel.
+     * The panel consists of a header and a details section. The details section can be expanded or collapsed by clicking on the header.
+     */
+    interface UiExpansionPanel {
         /**
-          * The first name
+          * Indicates whether the panel is expanded or collapsed.
+          * @type {boolean}
+          * @default false
          */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "expanded": boolean;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    /**
+     * @component UIExpansionPanel
+     * @description A custom web component that provides an expandable/collapsible panel.
+     * The panel consists of a header and a details section. The details section can be expanded or collapsed by clicking on the header.
+     */
+    interface HTMLUiExpansionPanelElement extends Components.UiExpansionPanel, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLUiExpansionPanelElement: {
+        prototype: HTMLUiExpansionPanelElement;
+        new (): HTMLUiExpansionPanelElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ui-expansion-panel": HTMLUiExpansionPanelElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    /**
+     * @component UIExpansionPanel
+     * @description A custom web component that provides an expandable/collapsible panel.
+     * The panel consists of a header and a details section. The details section can be expanded or collapsed by clicking on the header.
+     */
+    interface UiExpansionPanel {
         /**
-          * The first name
+          * Indicates whether the panel is expanded or collapsed.
+          * @type {boolean}
+          * @default false
          */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "expanded"?: boolean;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "ui-expansion-panel": UiExpansionPanel;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            /**
+             * @component UIExpansionPanel
+             * @description A custom web component that provides an expandable/collapsible panel.
+             * The panel consists of a header and a details section. The details section can be expanded or collapsed by clicking on the header.
+             */
+            "ui-expansion-panel": LocalJSX.UiExpansionPanel & JSXBase.HTMLAttributes<HTMLUiExpansionPanelElement>;
         }
     }
 }

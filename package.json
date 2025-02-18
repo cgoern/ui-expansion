@@ -1,7 +1,8 @@
 {
-  "name": "ui-expansion-panel",
+  "name": "@cgoern/ui-expansion-panel",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Expansion Panel Component",
+  "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
@@ -13,9 +14,9 @@
       "import": "./dist/ui-expansion-panel/ui-expansion-panel.esm.js",
       "require": "./dist/ui-expansion-panel/ui-expansion-panel.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./ui-expansion-panel": {
+      "import": "./dist/components/ui-expansion-panel.js",
+      "types": "./dist/components/ui-expansion-panel.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
@@ -25,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/cgoern/ui-expansion-panel.git"
   },
   "files": [
     "dist/",
@@ -34,17 +35,18 @@
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "@stencil/core": "^4.7.0",
-    "@types/jest": "^29.5.6",
-    "@types/node": "^16.18.11",
-    "jest": "^29.7.0",
-    "jest-cli": "^29.7.0",
-    "puppeteer": "^21.9.0"
+    "@stencil/core": "^4.26.0",
+    "prettier": "^3.5.1"
   },
-  "license": "MIT"
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false
+  }
 }

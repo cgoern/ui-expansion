@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+:host([expanded]) {
+  --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height);
+}
+
+.details {
+  height: var(--UI-Expansion-Panel-Details-Height, 0);
+  overflow: hidden;
+  will-change: height;
+  transition-property: height;
+  transition-duration: var(--UI-Expansion-Panel-Details-Transition-Duration, 0.25s);
+  transition-timing-function: var(
+    --UI-Expansion-Panel-Details-Transition-Timing-Function,
+    cubic-bezier(0.25, 1, 0.5, 1)
+  );
+}

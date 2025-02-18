@@ -1,14 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expansion Panel Component</title>
     <script type="module" src="/build/ui-expansion-panel.esm.js"></script>
     <script nomodule src="/build/ui-expansion-panel.js"></script>
+    <style>
+      body {
+        font-family: system-ui;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
-    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <div style="max-width: 512px; background: gray">
+      <ui-expansion-panel>
+        <div slot="header">UI Expansion Panel</div>
+        <div slot="content">
+          <div>
+            This is the content of the expansion panel. This is another content of the expansion
+            panel.
+          </div>
+          <div>This is another content of the expansion panel.</div>
+          <div>This is yet another content of the expansion panel.</div>
+          <div>This is the final content of the expansion panel.</div>
+          <div>This is the last content of the expansion panel. Of the expansion panel.</div>
+          <div>This is the final content of the expansion panel.</div>
+          <div>This is the last content of the expansion panel.</div>
+          <div>
+            This is the final content of the expansion panel. This is the last content of the
+            expansion.
+          </div>
+        </div>
+      </ui-expansion-panel>
+    </div>
   </body>
 </html>

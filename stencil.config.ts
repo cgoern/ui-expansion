@@ -1,4 +1,4 @@
-import { Config } from '@stencil/core';
+import { Config } from '@stencil/core'
 
 export const config: Config = {
   namespace: 'ui-expansion-panel',
@@ -14,13 +14,11 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      footer: '©2025 cgoern',
     },
     {
       type: 'www',
-      serviceWorker: null, // disable service workers
+      serviceWorker: null,
     },
   ],
-  testing: {
-    browserHeadless: "shell",
-  },
-};
+}
