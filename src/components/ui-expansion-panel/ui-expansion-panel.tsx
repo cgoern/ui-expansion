@@ -40,7 +40,7 @@ export class UiExpansionPanel {
    * allowing the component to cancel any pending animation frames if necessary.
    * It is set to null when no animation frame is scheduled.
    */
-  private animationFrameInstance: number | null
+  private animationFrameInstance: number | null = null
 
   /**
    * A collection of stylesheets used to manage CSS custom properties.
@@ -95,14 +95,14 @@ export class UiExpansionPanel {
    *
    * @type {string}
    */
-  @Prop() _id: string
+  @Prop() _id?: string
 
   /**
    * Lifecycle method that is called when the component is first connected to the DOM.
    * Initializes the ResizeObserver to monitor changes in the details element's size
    * and sets up the styleSheets property to manage CSS custom properties.
    */
-  connectedCallback() {
+  componentWillLoad() {
     this.resizeObserver = new ResizeObserver(() => {
       this.updateDetailsScrollHeight()
     })

@@ -12,7 +12,7 @@ export class UiExpansionPanelFolder {
    * This property is used to keep track of all the expansion panels contained in the folder
    * and to manage their state, such as collapsing other panels when one is expanded.
    */
-  private panels: HTMLUiExpansionPanelElement[]
+  private panels: HTMLUiExpansionPanelElement[] = []
 
   /**
    * The host element of the component.

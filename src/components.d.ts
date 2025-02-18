@@ -16,7 +16,7 @@ export namespace Components {
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
          */
-        "_id": string;
+        "_id"?: string;
         /**
           * Collapses the panel to hide the content. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false.
           * @returns A promise that resolves once the panel is collapsed.
