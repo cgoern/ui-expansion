@@ -33,7 +33,11 @@ export class UiExpansionPanelFolder {
   async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelExpandEventDetails>) {
     const collapsablePanels = this.panels.filter((panel) => panel !== event.detail.element)
 
-    await Promise.all(collapsablePanels.map((panel) => panel.collapse()))
+    try {
+      await Promise.all(collapsablePanels.map((panel) => panel.collapse()))
+    } catch (error) {
+      console.error('Error collapsing panels:', error)
+    }
   }
 
   /**
