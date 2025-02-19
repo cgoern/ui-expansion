@@ -1,5 +1,5 @@
 import { Component, Host, Element, Listen, h } from '@stencil/core'
-import { UiExpansionPanelExpandEventDetails } from './../../types'
+import { UiExpansionPanelEventDetails } from './../../types'
 
 @Component({
   tag: 'ui-expansion-panel-folder',
@@ -30,7 +30,7 @@ export class UiExpansionPanelFolder {
    * @param event - The custom event containing details about the expanded panel.
    */
   @Listen('uiExpansionPanelExpand')
-  async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelExpandEventDetails>) {
+  async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelEventDetails>) {
     const collapsablePanels = this.panels.filter((panel) => panel !== event.detail.element)
 
     try {

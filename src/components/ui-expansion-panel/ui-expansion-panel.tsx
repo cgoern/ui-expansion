@@ -1,5 +1,5 @@
 import { Component, Host, Element, Prop, Event, EventEmitter, Method, h } from '@stencil/core'
-import { UiExpansionPanelExpandEventDetails } from './../../types'
+import { UiExpansionPanelEventDetails } from './../../types'
 
 /**
  * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -75,11 +75,11 @@ export class UiExpansionPanel {
    * It can be used to perform actions or trigger updates when the panel is expanded.
    *
    * @event uiExpansionPanelExpand
-   * @type {CustomEvent<UiExpansionPanelExpandEventDetails>}
+   * @type {CustomEvent<UiExpansionPanelEventDetails>}
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelExpandEventDetails>
+  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelEventDetails>
 
   /**
    * Event emitted when the expansion panel is collapsed.
@@ -87,11 +87,11 @@ export class UiExpansionPanel {
    * It can be used to perform actions or trigger updates when the panel is collapsed.
    *
    * @event uiExpansionPanelCollapse
-   * @type {CustomEvent<UiExpansionPanelExpandEventDetails>}
+   * @type {CustomEvent<UiExpansionPanelEventDetails>}
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelExpandEventDetails>
+  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelEventDetails>
 
   /**
    * Determines whether the panel is expanded or collapsed.

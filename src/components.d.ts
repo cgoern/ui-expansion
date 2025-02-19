@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { UiExpansionPanelExpandEventDetails } from "./types";
-export { UiExpansionPanelExpandEventDetails } from "./types";
+import { UiExpansionPanelEventDetails } from "./types";
+export { UiExpansionPanelEventDetails } from "./types";
 export namespace Components {
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -47,8 +47,8 @@ export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLUiExpansionPanelElementEventMap {
-        "uiExpansionPanelExpand": UiExpansionPanelExpandEventDetails;
-        "uiExpansionPanelCollapse": UiExpansionPanelExpandEventDetails;
+        "uiExpansionPanelExpand": UiExpansionPanelEventDetails;
+        "uiExpansionPanelCollapse": UiExpansionPanelEventDetails;
     }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -101,19 +101,19 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the expansion panel is collapsed. This event provides details about the collapse state and the element reference. It can be used to perform actions or trigger updates when the panel is collapsed.
           * @event uiExpansionPanelCollapse
-          * @type {CustomEvent<UiExpansionPanelExpandEventDetails>}
+          * @type {CustomEvent<UiExpansionPanelEventDetails>}
           * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
           * @property {string} [id] - The unique identifier of the expansion panel, if provided.
          */
-        "onUiExpansionPanelCollapse"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelExpandEventDetails>) => void;
+        "onUiExpansionPanelCollapse"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelEventDetails>) => void;
         /**
           * Event emitted when the expansion panel is expanded. This event provides details about the expansion state and the element reference. It can be used to perform actions or trigger updates when the panel is expanded.
           * @event uiExpansionPanelExpand
-          * @type {CustomEvent<UiExpansionPanelExpandEventDetails>}
+          * @type {CustomEvent<UiExpansionPanelEventDetails>}
           * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
           * @property {string} [id] - The unique identifier of the expansion panel, if provided.
          */
-        "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelExpandEventDetails>) => void;
+        "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelEventDetails>) => void;
     }
     interface UiExpansionPanelFolder {
     }
