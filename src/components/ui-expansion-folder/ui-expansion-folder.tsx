@@ -1,6 +1,11 @@
 import { Component, Host, Element, Listen, h } from '@stencil/core'
 import { UiExpansionPanelDetails } from './../../types'
 
+/**
+ * A custom expansion folder component that wraps multiple expansion panels.
+ *
+ * @slot - Content is placed in the host element.
+ */
 @Component({
   tag: 'ui-expansion-folder',
   styleUrl: 'ui-expansion-folder.css',
@@ -30,24 +35,25 @@ export class UiExpansionFolder {
    * @param event - The custom event containing details about the expanded panel.
    */
   @Listen('uiExpansionPanelExpand')
-  async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelDetails>) {
-    const collapsablePanels = this.panels.filter((panel) => panel !== event.detail.element)
+  async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelDetails>): Promise<void> {
+    const collapsiblePanels = this.panels.filter((panel) => panel !== event.detail.element)
 
     try {
-      await Promise.all(collapsablePanels.map((panel) => panel.collapse()))
+      await Promise.all(collapsiblePanels.map((panel) => panel.collapse()))
     } catch (error) {
       console.error('Error collapsing panels:', error)
     }
   }
 
   /**
-   * Lifecycle method that is called when the component is about to be loaded.
-   * This method initializes the `panels` property by selecting all `ui-expansion-panel`
-   * elements within the host element. It ensures that the component has a reference
-   * to all the expansion panels contained within it before it is rendered.
+   * Lifecycle method that is called once just after the component has fully loaded and rendered.
+   * It is used to initialize the panels array and set the collapsible property of each panel.
    */
-  componentWillLoad() {
+  componentDidLoad() {
     this.panels = Array.from(this.element.querySelectorAll('ui-expansion-panel'))
+    this.panels.forEach((panel) => {
+      panel.collapsible = false
+    })
   }
 
   /**

@@ -2,6 +2,10 @@
 
 <!-- Auto Generated Below -->
 
+## Overview
+
+A custom expansion folder component that wraps multiple expansion panels.
+
 ## Usage
 
 ### Ui-expansion-folder-usage
@@ -29,6 +33,12 @@
   <!-- ... -->
 </ui-expansion-folder>
 ```
+
+## Slots
+
+| Slot | Description                            |
+| ---- | -------------------------------------- |
+|      | Content is placed in the host element. |
 
 ## CSS Custom Properties
 

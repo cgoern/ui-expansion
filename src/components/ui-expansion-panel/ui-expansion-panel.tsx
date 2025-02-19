@@ -59,7 +59,7 @@ export class UiExpansionPanel {
    *
    * @type {any}
    */
-  private dataValue: object
+  private dataValue: object | null = null
 
   /**
    * The host element of the component.
@@ -70,28 +70,11 @@ export class UiExpansionPanel {
   @Element() element!: HTMLUiExpansionPanelElement
 
   /**
-   * Event emitted when the expansion panel is expanded.
-   * This event provides details about the expansion state and the element reference.
-   * It can be used to perform actions or trigger updates when the panel is expanded.
-   *
-   * @event uiExpansionPanelExpand
-   * @type {CustomEvent<UiExpansionPanelDetails>}
-   * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
-   * @property {string} [id] - The unique identifier of the expansion panel, if provided.
+   * Event emitted when the panel is expanded.
+   * This event is triggered whenever the panel is expanded, providing details about the panel's state.
+   * The event detail contains the element reference, the panel's unique identifier, and any associated data.
    */
   @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelDetails>
-
-  /**
-   * Event emitted when the expansion panel is collapsed.
-   * This event provides details about the collapse state and the element reference.
-   * It can be used to perform actions or trigger updates when the panel is collapsed.
-   *
-   * @event uiExpansionPanelCollapse
-   * @type {CustomEvent<UiExpansionPanelDetails>}
-   * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
-   * @property {string} [id] - The unique identifier of the expansion panel, if provided.
-   */
-  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelDetails>
 
   /**
    * Determines whether the panel is expanded or collapsed.
@@ -100,13 +83,25 @@ export class UiExpansionPanel {
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false
 
   /**
+   * Determines whether the panel can be collapsed by clicking on its header.
+   * If set to false, the panel will not collapse when the header is clicked.
+   * This property is useful when you want to enforce that the panel remains expanded
+   * until another panel is expanded, typically used in conjunction with a parent component
+   * that manages the expansion state of multiple panels.
+   *
+   * @type {boolean}
+   * @default true
+   */
+  @Prop() collapsible: boolean = true
+
+  /**
    * A unique identifier for the expansion panel.
    * This property can be used to distinguish between multiple expansion panels
    * in the same context, allowing for better management and control of individual panels.
    *
    * @type {string}
    */
-  @Prop() _id?: string
+  @Prop() _id: string | null = null
 
   /**
    * Data to be used within the expansion panel.
@@ -116,7 +111,7 @@ export class UiExpansionPanel {
    *
    * @type {any}
    */
-  @Prop() _data?: string
+  @Prop() _data: string | null = null
 
   /**
    * Lifecycle method that is called when the component is first connected to the DOM.
@@ -209,25 +204,17 @@ export class UiExpansionPanel {
    * If an animation frame is already scheduled, it cancels the pending frame before scheduling a new one.
    */
   private toggleExpanded = (): void => {
-    if (this.animationFrameInstance !== null) {
-      cancelAnimationFrame(this.animationFrameInstance)
+    if (this.expanded && this.collapsible) {
+      this.collapse()
+    } else {
+      this.expand()
     }
-
-    this.animationFrameInstance = requestAnimationFrame(() => {
-      if (this.expanded && !this.element.closest('ui-expansion-folder')) {
-        this.collapse()
-      } else {
-        this.expand()
-      }
-
-      this.animationFrameInstance = null
-    })
   }
 
   /**
    * Expands the panel to show the content.
    * This method updates the CSS custom property for the expanded height
-   * and emits the uiExpansionPanelExpand event with the current state and element reference.
+   * and emits the uiExpansionPanelToggle event with the current state and element reference.
    * It also sets the expanded property to true.
    *
    * @returns {Promise<void>} A promise that resolves once the panel is expanded.
@@ -235,14 +222,12 @@ export class UiExpansionPanel {
   @Method()
   async expand(): Promise<void> {
     this.updateExpandedHeightProperty(`${this.detailsScrollHeight}px`)
-
+    this.expanded = true
     this.uiExpansionPanelExpand.emit({
       element: this.element,
-      ...(this._id !== undefined && { id: this._id }),
-      ...(this.dataValue !== undefined && { data: this.dataValue }),
+      id: this._id,
+      data: this.dataValue,
     })
-
-    this.expanded = true
   }
 
   /**
@@ -258,12 +243,6 @@ export class UiExpansionPanel {
 
     requestAnimationFrame(() => {
       this.updateExpandedHeightProperty('0px')
-    })
-
-    this.uiExpansionPanelCollapse.emit({
-      element: this.element,
-      ...(this._id !== undefined && { id: this._id }),
-      ...(this.dataValue !== undefined && { data: this.dataValue }),
     })
 
     this.expanded = false

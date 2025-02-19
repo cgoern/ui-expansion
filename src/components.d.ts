@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { UiExpansionPanelDetails } from "./types";
 export { UiExpansionPanelDetails } from "./types";
 export namespace Components {
+    /**
+     * A custom expansion folder component that wraps multiple expansion panels.
+     */
     interface UiExpansionFolder {
     }
     /**
@@ -18,19 +21,25 @@ export namespace Components {
           * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
           * @type {any}
          */
-        "_data"?: string;
+        "_data": string | null;
         /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
          */
-        "_id"?: string;
+        "_id": string | null;
         /**
           * Collapses the panel to hide the content. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false.
           * @returns A promise that resolves once the panel is collapsed.
          */
         "collapse": () => Promise<void>;
         /**
-          * Expands the panel to show the content. This method updates the CSS custom property for the expanded height and emits the uiExpansionPanelExpand event with the current state and element reference. It also sets the expanded property to true.
+          * Determines whether the panel can be collapsed by clicking on its header. If set to false, the panel will not collapse when the header is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
+          * @type {boolean}
+          * @default true
+         */
+        "collapsible": boolean;
+        /**
+          * Expands the panel to show the content. This method updates the CSS custom property for the expanded height and emits the uiExpansionPanelToggle event with the current state and element reference. It also sets the expanded property to true.
           * @returns A promise that resolves once the panel is expanded.
          */
         "expand": () => Promise<void>;
@@ -46,6 +55,9 @@ export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
     target: HTMLUiExpansionPanelElement;
 }
 declare global {
+    /**
+     * A custom expansion folder component that wraps multiple expansion panels.
+     */
     interface HTMLUiExpansionFolderElement extends Components.UiExpansionFolder, HTMLStencilElement {
     }
     var HTMLUiExpansionFolderElement: {
@@ -54,7 +66,6 @@ declare global {
     };
     interface HTMLUiExpansionPanelElementEventMap {
         "uiExpansionPanelExpand": UiExpansionPanelDetails;
-        "uiExpansionPanelCollapse": UiExpansionPanelDetails;
     }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -79,6 +90,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * A custom expansion folder component that wraps multiple expansion panels.
+     */
     interface UiExpansionFolder {
     }
     /**
@@ -89,31 +103,25 @@ declare namespace LocalJSX {
           * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
           * @type {any}
          */
-        "_data"?: string;
+        "_data"?: string | null;
         /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
          */
-        "_id"?: string;
+        "_id"?: string | null;
+        /**
+          * Determines whether the panel can be collapsed by clicking on its header. If set to false, the panel will not collapse when the header is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
+          * @type {boolean}
+          * @default true
+         */
+        "collapsible"?: boolean;
         /**
           * Determines whether the panel is expanded or collapsed.
           * @default false
          */
         "expanded"?: boolean;
         /**
-          * Event emitted when the expansion panel is collapsed. This event provides details about the collapse state and the element reference. It can be used to perform actions or trigger updates when the panel is collapsed.
-          * @event uiExpansionPanelCollapse
-          * @type {CustomEvent<UiExpansionPanelDetails>}
-          * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
-          * @property {string} [id] - The unique identifier of the expansion panel, if provided.
-         */
-        "onUiExpansionPanelCollapse"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
-        /**
-          * Event emitted when the expansion panel is expanded. This event provides details about the expansion state and the element reference. It can be used to perform actions or trigger updates when the panel is expanded.
-          * @event uiExpansionPanelExpand
-          * @type {CustomEvent<UiExpansionPanelDetails>}
-          * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
-          * @property {string} [id] - The unique identifier of the expansion panel, if provided.
+          * Event emitted when the panel is expanded. This event is triggered whenever the panel is expanded, providing details about the panel's state. The event detail contains the element reference, the panel's unique identifier, and any associated data.
          */
         "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
     }
@@ -126,6 +134,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * A custom expansion folder component that wraps multiple expansion panels.
+             */
             "ui-expansion-folder": LocalJSX.UiExpansionFolder & JSXBase.HTMLAttributes<HTMLUiExpansionFolderElement>;
             /**
              * A custom expansion panel component that can expand and collapse to show or hide content.

@@ -1,5 +1,5 @@
 export type UiExpansionPanelDetails = {
   element: HTMLUiExpansionPanelElement
-  id?: string
-  data?: any
+  id?: string | null
+  data?: object | null
 }
