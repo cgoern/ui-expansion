@@ -30,6 +30,14 @@
 </ui-expansion-panel-folder>
 ```
 
+## CSS Custom Properties
+
+| Name                                        | Description                            |
+| ------------------------------------------- | -------------------------------------- |
+| `--UI-Expansion-Panel-Folder-Display`       | Display of the expansion panel.        |
+| `--UI-Expansion-Panel-Folder-FlexDirection` | Flex direction of the expansion panel. |
+| `--UI-Expansion-Panel-Folder-Gap`           | Gap between the expansion panel items. |
+
 ---
 
 ©2025 cgoern
