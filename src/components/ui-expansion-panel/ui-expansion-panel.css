@@ -1,6 +1,6 @@
 :host {
   /** @prop --UI-Expansion-Panel-Background: Background of the expansion panel. */
-  background: var(--UI-Expansion-Panel-Background, oklch(96% 0 0));
+  background: var(--UI-Expansion-Panel-Background, oklch(0% 0 0 / 5%));
 
   /** @prop --UI-Expansion-Panel-BoxShadow: Box shadow of the expansion panel. */
   box-shadow: var(--UI-Expansion-Panel-BoxShadow, inset 0 0 0 0.0625rem oklch(0% 0 0 / 10%));
