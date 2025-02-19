@@ -13,7 +13,7 @@ A custom expansion panel component that can expand and collapse to show or hide 
 # How to use `ui-expansion-panel`
 
 ```html
-<ui-expansion-panel>
+<ui-expansion-panel _id="123" _data='{"product": 12345, "name": "Product Name", "quantity": 10}'>
   <div slot="header">UI Expansion Panel Header</div>
   <div slot="content">
     Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
