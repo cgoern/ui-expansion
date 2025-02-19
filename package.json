@@ -1,26 +1,26 @@
 {
-  "name": "@cgoern/ui-expansion-panel",
+  "name": "@cgoern/ui-expansion",
   "version": "0.0.1",
-  "description": "Expansion Panel Component",
+  "description": "UI Expansion Components",
   "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ui-expansion-panel/ui-expansion-panel.esm.js",
+  "unpkg": "dist/ui-expansion/ui-expansion.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/ui-expansion-panel/ui-expansion-panel.esm.js",
-      "require": "./dist/ui-expansion-panel/ui-expansion-panel.cjs.js"
+      "import": "./dist/ui-expansion/ui-expansion.esm.js",
+      "require": "./dist/ui-expansion/ui-expansion.cjs.js"
     },
     "./ui-expansion-panel": {
       "import": "./dist/components/ui-expansion-panel.js",
       "types": "./dist/components/ui-expansion-panel.d.ts"
     },
-    "./ui-expansion-panel-folder": {
-      "import": "./dist/components/ui-expansion-panel-folder.js",
-      "types": "./dist/components/ui-expansion-panel-folder.d.ts"
+    "./ui-expansion-folder": {
+      "import": "./dist/components/ui-expansion-folder.js",
+      "types": "./dist/components/ui-expansion-folder.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cgoern/ui-expansion-panel.git"
+    "url": "https://github.com/cgoern/ui-expansion.git"
   },
   "files": [
     "dist/",

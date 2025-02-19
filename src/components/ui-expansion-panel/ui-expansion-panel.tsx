@@ -215,7 +215,7 @@ export class UiExpansionPanel {
     }
 
     this.animationFrameInstance = requestAnimationFrame(() => {
-      if (this.expanded && !this.element.closest('ui-expansion-panel-folder')) {
+      if (this.expanded && !this.element.closest('ui-expansion-folder')) {
         this.collapse()
       } else {
         this.expand()

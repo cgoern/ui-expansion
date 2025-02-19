@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core'
 
 export const config: Config = {
-  namespace: 'ui-expansion-panel',
+  namespace: 'ui-expansion',
   outputTargets: [
     {
       type: 'dist',

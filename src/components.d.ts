@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { UiExpansionPanelEventDetails } from "./types";
 export { UiExpansionPanelEventDetails } from "./types";
 export namespace Components {
+    interface UiExpansionFolder {
+    }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
      */
@@ -38,14 +40,18 @@ export namespace Components {
          */
         "expanded": boolean;
     }
-    interface UiExpansionPanelFolder {
-    }
 }
 export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUiExpansionPanelElement;
 }
 declare global {
+    interface HTMLUiExpansionFolderElement extends Components.UiExpansionFolder, HTMLStencilElement {
+    }
+    var HTMLUiExpansionFolderElement: {
+        prototype: HTMLUiExpansionFolderElement;
+        new (): HTMLUiExpansionFolderElement;
+    };
     interface HTMLUiExpansionPanelElementEventMap {
         "uiExpansionPanelExpand": UiExpansionPanelEventDetails;
         "uiExpansionPanelCollapse": UiExpansionPanelEventDetails;
@@ -67,18 +73,14 @@ declare global {
         prototype: HTMLUiExpansionPanelElement;
         new (): HTMLUiExpansionPanelElement;
     };
-    interface HTMLUiExpansionPanelFolderElement extends Components.UiExpansionPanelFolder, HTMLStencilElement {
-    }
-    var HTMLUiExpansionPanelFolderElement: {
-        prototype: HTMLUiExpansionPanelFolderElement;
-        new (): HTMLUiExpansionPanelFolderElement;
-    };
     interface HTMLElementTagNameMap {
+        "ui-expansion-folder": HTMLUiExpansionFolderElement;
         "ui-expansion-panel": HTMLUiExpansionPanelElement;
-        "ui-expansion-panel-folder": HTMLUiExpansionPanelFolderElement;
     }
 }
 declare namespace LocalJSX {
+    interface UiExpansionFolder {
+    }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
      */
@@ -115,22 +117,20 @@ declare namespace LocalJSX {
          */
         "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelEventDetails>) => void;
     }
-    interface UiExpansionPanelFolder {
-    }
     interface IntrinsicElements {
+        "ui-expansion-folder": UiExpansionFolder;
         "ui-expansion-panel": UiExpansionPanel;
-        "ui-expansion-panel-folder": UiExpansionPanelFolder;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ui-expansion-folder": LocalJSX.UiExpansionFolder & JSXBase.HTMLAttributes<HTMLUiExpansionFolderElement>;
             /**
              * A custom expansion panel component that can expand and collapse to show or hide content.
              */
             "ui-expansion-panel": LocalJSX.UiExpansionPanel & JSXBase.HTMLAttributes<HTMLUiExpansionPanelElement>;
-            "ui-expansion-panel-folder": LocalJSX.UiExpansionPanelFolder & JSXBase.HTMLAttributes<HTMLUiExpansionPanelFolderElement>;
         }
     }
 }

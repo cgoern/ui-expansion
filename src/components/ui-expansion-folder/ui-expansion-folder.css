@@ -1,0 +1,10 @@
+:host {
+  /** @prop --UI-Expansion-Folder-Display: Display of the expansion panel. */
+  display: var(--UI-Expansion-Folder-Display, flex);
+
+  /** @prop --UI-Expansion-Folder-FlexDirection: Flex direction of the expansion panel. */
+  flex-direction: var(--UI-Expansion-Folder-FlexDirection, column);
+
+  /** @prop --UI-Expansion-Folder-Gap: Gap between the expansion panel items. */
+  gap: var(--UI-Expansion-Folder-Gap, 1rem);
+}

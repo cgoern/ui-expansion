@@ -1,1 +1,1 @@
-# UI Expansion Panel
+# UI Expansion

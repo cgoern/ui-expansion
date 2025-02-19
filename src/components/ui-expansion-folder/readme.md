@@ -1,15 +1,15 @@
-# ui-expansion-panel-folder
+# ui-expansion-folder
 
 <!-- Auto Generated Below -->
 
 ## Usage
 
-### Ui-expansion-panel-folder-usage
+### Ui-expansion-folder-usage
 
-# How to use `ui-expansion-panel-folder`
+# How to use `ui-expansion-folder`
 
 ```html
-<ui-expansion-panel-folder>
+<ui-expansion-folder>
   <ui-expansion-panel expanded>
     <div slot="header">UI Expansion Panel Header</div>
     <div slot="content">
@@ -27,16 +27,16 @@
     </div>
   </ui-expansion-panel>
   <!-- ... -->
-</ui-expansion-panel-folder>
+</ui-expansion-folder>
 ```
 
 ## CSS Custom Properties
 
-| Name                                        | Description                            |
-| ------------------------------------------- | -------------------------------------- |
-| `--UI-Expansion-Panel-Folder-Display`       | Display of the expansion panel.        |
-| `--UI-Expansion-Panel-Folder-FlexDirection` | Flex direction of the expansion panel. |
-| `--UI-Expansion-Panel-Folder-Gap`           | Gap between the expansion panel items. |
+| Name                                  | Description                            |
+| ------------------------------------- | -------------------------------------- |
+| `--UI-Expansion-Folder-Display`       | Display of the expansion panel.        |
+| `--UI-Expansion-Folder-FlexDirection` | Flex direction of the expansion panel. |
+| `--UI-Expansion-Folder-Gap`           | Gap between the expansion panel items. |
 
 ---
 

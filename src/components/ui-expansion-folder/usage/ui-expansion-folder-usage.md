@@ -1,7 +1,7 @@
-# How to use `ui-expansion-panel-folder`
+# How to use `ui-expansion-folder`
 
 ```html
-<ui-expansion-panel-folder>
+<ui-expansion-folder>
   <ui-expansion-panel expanded>
     <div slot="header">UI Expansion Panel Header</div>
     <div slot="content">
@@ -19,5 +19,5 @@
     </div>
   </ui-expansion-panel>
   <!-- ... -->
-</ui-expansion-panel-folder>
+</ui-expansion-folder>
 ```

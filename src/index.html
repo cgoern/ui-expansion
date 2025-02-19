@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expansion Panel Component</title>
-    <script type="module" src="/build/ui-expansion-panel.esm.js"></script>
-    <script nomodule src="/build/ui-expansion-panel.js"></script>
+    <title>UI Expansion Components</title>
+    <script type="module" src="/build/ui-expansion.esm.js"></script>
+    <script nomodule src="/build/ui-expansion.js"></script>
     <style>
       :root {
         /* --UI-Expansion-Panel-TransitionDuration: 1s; */
@@ -13,9 +13,14 @@
           0 0 0 0.0625rem oklch(0% 0 0 / 10%), 0 0.25rem 1rem -0.25rem oklch(0% 0 0 / 10%),
           0 0.5rem 2rem -0.5rem oklch(0% 0 0 / 10%), 0 1rem 4rem -1rem oklch(0% 0 0 / 10%),
           0 2rem 8rem -2rem oklch(0% 0 0 / 10%), inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%);
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
+
       * {
         line-height: round(nearest, calc((16px / 1.6) + 1em), 2px);
+        letter-spacing: calc((12px - 1em) * 0.03);
       }
 
       html {
@@ -52,7 +57,9 @@
     </style>
   </head>
   <body>
-    <ui-expansion-panel-folder>
+    <h1>UI Expansion</h1>
+    <h2>UI Expansion Folder</h2>
+    <ui-expansion-folder>
       <ui-expansion-panel expanded>
         <div slot="header" class="header">UI Expansion Panel</div>
         <div slot="content" class="content">
@@ -83,16 +90,6 @@
           </div>
         </div>
       </ui-expansion-panel>
-      <ui-expansion-panel>
-        <div slot="header" class="header">UI Expansion Panel</div>
-        <div slot="content" class="content">
-          <div>
-            Culpa non aut vel qui veniam ullam praesentium ea. Aspernatur a cumque assumenda maiores
-            hic quo. Facilis est repudiandae neque autem a animi. Quia quis nemo nostrum ullam
-            possimus vel sunt.
-          </div>
-        </div>
-      </ui-expansion-panel>
-    </ui-expansion-panel-folder>
+    </ui-expansion-folder>
   </body>
 </html>

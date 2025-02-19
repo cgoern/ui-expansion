@@ -2,11 +2,11 @@ import { Component, Host, Element, Listen, h } from '@stencil/core'
 import { UiExpansionPanelEventDetails } from './../../types'
 
 @Component({
-  tag: 'ui-expansion-panel-folder',
-  styleUrl: 'ui-expansion-panel-folder.css',
+  tag: 'ui-expansion-folder',
+  styleUrl: 'ui-expansion-folder.css',
   shadow: true,
 })
-export class UiExpansionPanelFolder {
+export class UiExpansionFolder {
   /**
    * An array of HTMLUiExpansionPanelElement that represents the panels within the folder.
    * This property is used to keep track of all the expansion panels contained in the folder
@@ -20,7 +20,7 @@ export class UiExpansionPanelFolder {
    * to the custom element instance. It can be used to access the element's
    * shadow DOM, attributes, and other properties.
    */
-  @Element() element!: HTMLUiExpansionPanelFolderElement
+  @Element() element!: HTMLUiExpansionFolderElement
 
   /**
    * Event listener for the 'uiExpansionPanelExpand' event.
