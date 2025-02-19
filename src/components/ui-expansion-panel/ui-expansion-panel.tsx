@@ -51,6 +51,17 @@ export class UiExpansionPanel {
   private styleSheets: CSSStyleSheet[] | StyleSheetList
 
   /**
+   * Arbitrary data associated with the expansion panel.
+   * This property can be used to store any additional information or metadata
+   * that needs to be associated with the expansion panel. The data can be of any type
+   * and is typically used to pass contextual information or state that is relevant
+   * to the panel's content or behavior.
+   *
+   * @type {any}
+   */
+  private data: any
+
+  /**
    * The host element of the component.
    * This property is automatically populated by Stencil and provides a reference
    * to the custom element instance. It can be used to access the element's
@@ -68,7 +79,7 @@ export class UiExpansionPanel {
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelExpand: EventEmitter<UiExpansionPanelExpandEventDetails>
+  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelExpandEventDetails>
 
   /**
    * Event emitted when the expansion panel is collapsed.
@@ -80,7 +91,7 @@ export class UiExpansionPanel {
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelCollapse: EventEmitter<UiExpansionPanelExpandEventDetails>
+  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelExpandEventDetails>
 
   /**
    * Determines whether the panel is expanded or collapsed.
@@ -98,18 +109,35 @@ export class UiExpansionPanel {
   @Prop() _id?: string
 
   /**
+   * Data to be used within the expansion panel.
+   * This property can be used to pass any data that needs to be accessed or displayed
+   * within the expansion panel. The data can be of any type and is parsed from a JSON string
+   * if provided as such.
+   *
+   * @type {any}
+   */
+  @Prop() _data?: any
+
+  /**
    * Lifecycle method that is called when the component is first connected to the DOM.
    * Initializes the ResizeObserver to monitor changes in the details element's size
    * and sets up the styleSheets property to manage CSS custom properties.
    */
   componentWillLoad() {
-    this.resizeObserver = new ResizeObserver(() => {
-      this.updateDetailsScrollHeight()
-    })
+    this.resizeObserver = new ResizeObserver(this.updateDetailsScrollHeight)
 
     this.styleSheets = this.element.shadowRoot.adoptedStyleSheets
       ? this.element.shadowRoot.adoptedStyleSheets
       : this.element.shadowRoot.styleSheets
+
+    if (this._data) {
+      try {
+        this.data = JSON.parse(this._data)
+      } catch (e) {
+        console.error('Failed to parse _data:', e)
+        this.data = this._data
+      }
+    }
   }
 
   /**
@@ -153,18 +181,14 @@ export class UiExpansionPanel {
    * @param {string} value - The value to set for the expanded height.
    */
   private updateExpandedHeightProperty = (value: string): void => {
+    const rule = `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`
+
     if (this.styleSheets instanceof StyleSheetList) {
-      this.styleSheets[0].insertRule(
-        `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`,
-      )
+      this.styleSheets[0].insertRule(rule)
     } else {
-      const styleSheetsAddition = new CSSStyleSheet()
-
-      styleSheetsAddition.replaceSync(
-        `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`,
-      )
-
-      this.element.shadowRoot.adoptedStyleSheets = [...this.styleSheets, styleSheetsAddition]
+      const styleSheet = new CSSStyleSheet()
+      styleSheet.replaceSync(rule)
+      this.element.shadowRoot.adoptedStyleSheets = [...this.styleSheets, styleSheet]
     }
   }
 
@@ -216,6 +240,7 @@ export class UiExpansionPanel {
     this.uiExpansionPanelExpand.emit({
       element: this.element,
       ...(this._id !== undefined && { id: this._id }),
+      ...(this.data !== undefined && { data: this.data }),
     })
 
     this.expanded = true
@@ -239,6 +264,7 @@ export class UiExpansionPanel {
     this.uiExpansionPanelCollapse.emit({
       element: this.element,
       ...(this._id !== undefined && { id: this._id }),
+      ...(this.data !== undefined && { data: this.data }),
     })
 
     this.expanded = false

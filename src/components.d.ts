@@ -13,6 +13,11 @@ export namespace Components {
      */
     interface UiExpansionPanel {
         /**
+          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
+          * @type {any}
+         */
+        "_data"?: any;
+        /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
          */
@@ -78,6 +83,11 @@ declare namespace LocalJSX {
      * A custom expansion panel component that can expand and collapse to show or hide content.
      */
     interface UiExpansionPanel {
+        /**
+          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
+          * @type {any}
+         */
+        "_data"?: any;
         /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}

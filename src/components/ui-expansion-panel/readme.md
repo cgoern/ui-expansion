@@ -25,17 +25,18 @@ A custom expansion panel component that can expand and collapse to show or hide 
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                                                                                                                                                   | Type      | Default     |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
-| `_id`      | `_id`      | A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels. | `string`  | `undefined` |
-| `expanded` | `expanded` | Determines whether the panel is expanded or collapsed.                                                                                                                                                        | `boolean` | `false`     |
+| Property   | Attribute  | Description                                                                                                                                                                                                                                 | Type      | Default     |
+| ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `_data`    | `_data`    | Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such. | `any`     | `undefined` |
+| `_id`      | `_id`      | A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.                               | `string`  | `undefined` |
+| `expanded` | `expanded` | Determines whether the panel is expanded or collapsed.                                                                                                                                                                                      | `boolean` | `false`     |
 
 ## Events
 
-| Event                      | Description                                                                                                                                                                                                            | Type                                                                  |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `uiExpansionPanelCollapse` | Event emitted when the expansion panel is collapsed. This event provides details about the collapse state and the element reference. It can be used to perform actions or trigger updates when the panel is collapsed. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; id?: string; }>` |
-| `uiExpansionPanelExpand`   | Event emitted when the expansion panel is expanded. This event provides details about the expansion state and the element reference. It can be used to perform actions or trigger updates when the panel is expanded.  | `CustomEvent<{ element: HTMLUiExpansionPanelElement; id?: string; }>` |
+| Event                      | Description                                                                                                                                                                                                            | Type                                                                              |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `uiExpansionPanelCollapse` | Event emitted when the expansion panel is collapsed. This event provides details about the collapse state and the element reference. It can be used to perform actions or trigger updates when the panel is collapsed. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; id?: string; data?: any; }>` |
+| `uiExpansionPanelExpand`   | Event emitted when the expansion panel is expanded. This event provides details about the expansion state and the element reference. It can be used to perform actions or trigger updates when the panel is expanded.  | `CustomEvent<{ element: HTMLUiExpansionPanelElement; id?: string; data?: any; }>` |
 
 ## Methods
 
