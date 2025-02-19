@@ -30,7 +30,7 @@
       body {
         display: grid;
         grid-template-columns: min(100%, 512px);
-        align-content: center;
+        align-content: start;
         justify-content: center;
         gap: 1rem;
         min-height: 100%;
@@ -58,7 +58,6 @@
   </head>
   <body>
     <h1>UI Expansion</h1>
-    <h2>UI Expansion Folder</h2>
     <ui-expansion-folder>
       <ui-expansion-panel expanded>
         <div slot="header" class="header">UI Expansion Panel</div>
@@ -91,5 +90,16 @@
         </div>
       </ui-expansion-panel>
     </ui-expansion-folder>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const uiExpansionPanels = document.querySelectorAll('ui-expansion-panel')
+
+        uiExpansionPanels.forEach((panel) => {
+          panel.addEventListener('uiExpansionPanelExpand', (event) => {
+            console.log('Expanded Panel:', event.detail)
+          })
+        })
+      })
+    </script>
   </body>
 </html>

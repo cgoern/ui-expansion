@@ -1,5 +1,5 @@
 import { Component, Host, Element, Prop, Event, EventEmitter, Method, h } from '@stencil/core'
-import { UiExpansionPanelEventDetails } from './../../types'
+import { UiExpansionPanelDetails } from './../../types'
 
 /**
  * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -59,7 +59,7 @@ export class UiExpansionPanel {
    *
    * @type {any}
    */
-  private data: any
+  private dataValue: object
 
   /**
    * The host element of the component.
@@ -75,11 +75,11 @@ export class UiExpansionPanel {
    * It can be used to perform actions or trigger updates when the panel is expanded.
    *
    * @event uiExpansionPanelExpand
-   * @type {CustomEvent<UiExpansionPanelEventDetails>}
+   * @type {CustomEvent<UiExpansionPanelDetails>}
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelEventDetails>
+  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelDetails>
 
   /**
    * Event emitted when the expansion panel is collapsed.
@@ -87,11 +87,11 @@ export class UiExpansionPanel {
    * It can be used to perform actions or trigger updates when the panel is collapsed.
    *
    * @event uiExpansionPanelCollapse
-   * @type {CustomEvent<UiExpansionPanelEventDetails>}
+   * @type {CustomEvent<UiExpansionPanelDetails>}
    * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
    * @property {string} [id] - The unique identifier of the expansion panel, if provided.
    */
-  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelEventDetails>
+  @Event() uiExpansionPanelCollapse!: EventEmitter<UiExpansionPanelDetails>
 
   /**
    * Determines whether the panel is expanded or collapsed.
@@ -116,7 +116,7 @@ export class UiExpansionPanel {
    *
    * @type {any}
    */
-  @Prop() _data?: any
+  @Prop() _data?: string
 
   /**
    * Lifecycle method that is called when the component is first connected to the DOM.
@@ -132,10 +132,9 @@ export class UiExpansionPanel {
 
     if (this._data) {
       try {
-        this.data = JSON.parse(this._data)
-      } catch (e) {
-        console.error('Failed to parse _data:', e)
-        this.data = this._data
+        this.dataValue = JSON.parse(this._data)
+      } catch (error) {
+        console.error('Failed to parse _data:', error)
       }
     }
   }
@@ -240,7 +239,7 @@ export class UiExpansionPanel {
     this.uiExpansionPanelExpand.emit({
       element: this.element,
       ...(this._id !== undefined && { id: this._id }),
-      ...(this.data !== undefined && { data: this.data }),
+      ...(this.dataValue !== undefined && { data: this.dataValue }),
     })
 
     this.expanded = true
@@ -264,7 +263,7 @@ export class UiExpansionPanel {
     this.uiExpansionPanelCollapse.emit({
       element: this.element,
       ...(this._id !== undefined && { id: this._id }),
-      ...(this.data !== undefined && { data: this.data }),
+      ...(this.dataValue !== undefined && { data: this.dataValue }),
     })
 
     this.expanded = false

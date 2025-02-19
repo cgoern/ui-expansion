@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { UiExpansionPanelEventDetails } from "./types";
-export { UiExpansionPanelEventDetails } from "./types";
+import { UiExpansionPanelDetails } from "./types";
+export { UiExpansionPanelDetails } from "./types";
 export namespace Components {
     interface UiExpansionFolder {
     }
@@ -18,7 +18,7 @@ export namespace Components {
           * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
           * @type {any}
          */
-        "_data"?: any;
+        "_data"?: string;
         /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
@@ -53,8 +53,8 @@ declare global {
         new (): HTMLUiExpansionFolderElement;
     };
     interface HTMLUiExpansionPanelElementEventMap {
-        "uiExpansionPanelExpand": UiExpansionPanelEventDetails;
-        "uiExpansionPanelCollapse": UiExpansionPanelEventDetails;
+        "uiExpansionPanelExpand": UiExpansionPanelDetails;
+        "uiExpansionPanelCollapse": UiExpansionPanelDetails;
     }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide content.
@@ -89,7 +89,7 @@ declare namespace LocalJSX {
           * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
           * @type {any}
          */
-        "_data"?: any;
+        "_data"?: string;
         /**
           * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
           * @type {string}
@@ -103,19 +103,19 @@ declare namespace LocalJSX {
         /**
           * Event emitted when the expansion panel is collapsed. This event provides details about the collapse state and the element reference. It can be used to perform actions or trigger updates when the panel is collapsed.
           * @event uiExpansionPanelCollapse
-          * @type {CustomEvent<UiExpansionPanelEventDetails>}
+          * @type {CustomEvent<UiExpansionPanelDetails>}
           * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
           * @property {string} [id] - The unique identifier of the expansion panel, if provided.
          */
-        "onUiExpansionPanelCollapse"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelEventDetails>) => void;
+        "onUiExpansionPanelCollapse"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
         /**
           * Event emitted when the expansion panel is expanded. This event provides details about the expansion state and the element reference. It can be used to perform actions or trigger updates when the panel is expanded.
           * @event uiExpansionPanelExpand
-          * @type {CustomEvent<UiExpansionPanelEventDetails>}
+          * @type {CustomEvent<UiExpansionPanelDetails>}
           * @property {HTMLUiExpansionPanelElement} element - The reference to the expansion panel element.
           * @property {string} [id] - The unique identifier of the expansion panel, if provided.
          */
-        "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelEventDetails>) => void;
+        "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
     }
     interface IntrinsicElements {
         "ui-expansion-folder": UiExpansionFolder;

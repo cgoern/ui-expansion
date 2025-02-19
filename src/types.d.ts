@@ -1,4 +1,4 @@
-export type UiExpansionPanelEventDetails = {
+export type UiExpansionPanelDetails = {
   element: HTMLUiExpansionPanelElement
   id?: string
   data?: any
