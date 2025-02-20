@@ -44,6 +44,9 @@
   /** @prop --UI-Expansion-Panel-BorderRadius: Border radius of the expansion panel when expanded. */
   --UI-Expansion-Panel-BorderRadius: var(--UI-Expansion-Panel-Expanded-BorderRadius, 0.25rem);
 
+  /** @prop --UI-Expansion-Panel-Expanded-Summary-Cursor: Cursor of the summary element when expanded. */
+  --UI-Expansion-Panel-Summary-Cursor: var(--UI-Expansion-Panel-Expanded-Summary-Cursor, pointer);
+
   --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height, auto);
 }
 
