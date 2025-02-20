@@ -1,6 +1,6 @@
 {
   "name": "@cgoern/ui-expansion",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "UI Expansion Components",
   "license": "MIT",
   "main": "dist/index.cjs.js",
