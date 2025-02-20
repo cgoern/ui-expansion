@@ -48,6 +48,11 @@ export namespace Components {
           * @default false
          */
         "expanded": boolean;
+        /**
+          * Retrieves the data associated with the expansion panel. This method returns the dataValue property, which contains any additional information or metadata that has been associated with the expansion panel.
+          * @returns A promise that resolves to the data associated with the panel, or null if no data is available.
+         */
+        "getData": () => Promise<object | null>;
     }
 }
 export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {

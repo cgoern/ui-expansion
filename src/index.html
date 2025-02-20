@@ -86,8 +86,12 @@
       </ui-expansion-panel>
     </ui-expansion-folder>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', async () => {
+        await customElements.whenDefined('ui-expansion-panel')
         const uiExpansionPanels = document.querySelectorAll('ui-expansion-panel')
+        const panelFirstData = await uiExpansionPanels[0].getData()
+
+        console.log(panelFirstData)
 
         uiExpansionPanels.forEach((panel) => {
           panel.addEventListener('uiExpansionPanelToggle', (event) => {

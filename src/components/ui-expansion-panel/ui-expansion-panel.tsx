@@ -262,6 +262,19 @@ export class UiExpansionPanel {
   }
 
   /**
+   * Retrieves the data associated with the expansion panel.
+   * This method returns the dataValue property, which contains any additional information
+   * or metadata that has been associated with the expansion panel.
+   *
+   * @returns {Promise<object | null>} A promise that resolves to the data associated with the panel,
+   * or null if no data is available.
+   */
+  @Method()
+  async getData(): Promise<object | null> {
+    return this.dataValue
+  }
+
+  /**
    * Renders the component.
    */
   render() {
