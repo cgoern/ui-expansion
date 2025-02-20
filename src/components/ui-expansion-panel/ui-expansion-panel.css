@@ -9,12 +9,7 @@
   border-radius: var(--UI-Expansion-Panel-BorderRadius, 0.25rem);
 
   /** @prop --UI-Expansion-Panel-TransitionProperty: Transition property of the transition effect when expanding or collapsing the panel. */
-  transition-property: var(
-    --UI-Expansion-Panel-TransitionProperty,
-    background,
-    box-shadow,
-    border-radius
-  );
+  transition-property: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow);
 
   /** @prop --UI-Expansion-Panel-TransitionDuration: Duration of the transition effect when expanding or collapsing the panel. */
   transition-duration: var(--UI-Expansion-Panel-TransitionDuration, 0.25s);
@@ -40,9 +35,6 @@
     0 0.25rem 0.5rem -0.25rem oklch(0% 0 0 / 10%),
     inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%)
   );
-
-  /** @prop --UI-Expansion-Panel-BorderRadius: Border radius of the expansion panel when expanded. */
-  --UI-Expansion-Panel-BorderRadius: var(--UI-Expansion-Panel-Expanded-BorderRadius, 0.25rem);
 
   /** @prop --UI-Expansion-Panel-Expanded-Summary-Cursor: Cursor of the summary element when expanded. */
   --UI-Expansion-Panel-Summary-Cursor: var(--UI-Expansion-Panel-Expanded-Summary-Cursor, pointer);
