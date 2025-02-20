@@ -15,16 +15,16 @@ A custom expansion folder component that wraps multiple expansion panels.
 ```html
 <ui-expansion-folder>
   <ui-expansion-panel expanded>
-    <div slot="header">UI Expansion Panel Header</div>
-    <div slot="content">
+    <div slot="summary">UI Expansion Panel Header</div>
+    <div slot="details">
       Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
       beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet suscipit ea
       eaque sed quidem. Autem corporis libero quasi recusandae omnis.
     </div>
   </ui-expansion-panel>
   <ui-expansion-panel>
-    <div slot="header">UI Expansion Panel Header</div>
-    <div slot="content">
+    <div slot="summary">UI Expansion Panel Header</div>
+    <div slot="details">
       Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
       beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet suscipit ea
       eaque sed quidem. Autem corporis libero quasi recusandae omnis.

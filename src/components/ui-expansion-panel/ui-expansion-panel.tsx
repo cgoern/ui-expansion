@@ -2,10 +2,10 @@ import { Component, Host, Element, Prop, Event, EventEmitter, Method, h } from '
 import { UiExpansionPanelDetails } from './../../types'
 
 /**
- * A custom expansion panel component that can expand and collapse to show or hide content.
+ * A custom expansion panel component that can expand and collapse to show or hide details.
  *
- * @slot header - Content is placed in the header which toggles the expansion state.
- * @slot content - Content is placed in the content area which is expanded or collapsed.
+ * @slot summary - Content is placed in the summary which toggles the expansion state.
+ * @slot details - Content is placed in the details area which is expanded or collapsed.
  */
 @Component({
   tag: 'ui-expansion-panel',
@@ -55,7 +55,7 @@ export class UiExpansionPanel {
    * This property can be used to store any additional information or metadata
    * that needs to be associated with the expansion panel. The data can be of any type
    * and is typically used to pass contextual information or state that is relevant
-   * to the panel's content or behavior.
+   * to the panel's details or behavior.
    *
    * @type {any}
    */
@@ -83,8 +83,8 @@ export class UiExpansionPanel {
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false
 
   /**
-   * Determines whether the panel can be collapsed by clicking on its header.
-   * If set to false, the panel will not collapse when the header is clicked.
+   * Determines whether the panel can be collapsed by clicking on its summary.
+   * If set to false, the panel will not collapse when the summary is clicked.
    * This property is useful when you want to enforce that the panel remains expanded
    * until another panel is expanded, typically used in conjunction with a parent component
    * that manages the expansion state of multiple panels.
@@ -199,7 +199,7 @@ export class UiExpansionPanel {
 
   /**
    * Toggles the expanded state of the panel.
-   * This method is called when the header is clicked, and it schedules an animation frame
+   * This method is called when the summary is clicked, and it schedules an animation frame
    * to either expand or collapse the panel based on its current state.
    * If an animation frame is already scheduled, it cancels the pending frame before scheduling a new one.
    */
@@ -212,7 +212,7 @@ export class UiExpansionPanel {
   }
 
   /**
-   * Expands the panel to show the content.
+   * Expands the panel to show the details.
    * This method updates the CSS custom property for the expanded height
    * and emits the uiExpansionPanelToggle event with the current state and element reference.
    * It also sets the expanded property to true.
@@ -231,7 +231,7 @@ export class UiExpansionPanel {
   }
 
   /**
-   * Collapses the panel to hide the content.
+   * Collapses the panel to hide the details.
    * This method updates the CSS custom property for the expanded height to 0px,
    * schedules an animation frame to apply the height change, and sets the expanded property to false.
    *
@@ -254,13 +254,11 @@ export class UiExpansionPanel {
   render() {
     return (
       <Host>
-        <div class="header" onClick={this.toggleExpanded}>
-          <slot name="header" />
+        <div class="summary" onClick={this.toggleExpanded}>
+          <slot name="summary" />
         </div>
         <div class="details" ref={(element) => (this.detailsElement = element)}>
-          <div class="content">
-            <slot name="content" />
-          </div>
+          <slot name="details" />
         </div>
       </Host>
     )

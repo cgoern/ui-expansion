@@ -45,13 +45,13 @@
         visibility: hidden;
       }
 
-      .header {
+      .summary {
         font-weight: bold;
         padding: 0.75rem 1rem;
         cursor: pointer;
       }
 
-      .content {
+      .details {
         padding: 0.75rem 1rem;
       }
     </style>
@@ -59,34 +59,28 @@
   <body>
     <h1>UI Expansion</h1>
     <ui-expansion-folder>
-      <ui-expansion-panel expanded _data='{"product": 1, "name": "Product Name 1"}'>
-        <div slot="header" class="header">UI Expansion Panel 1</div>
-        <div slot="content" class="content">
-          <div>
-            Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut
-            consequuntur excepturi nulla. Fuga voluptate aperiam odio consectetur aliquid itaque
-            incidunt quos. Expedita iste vero molestiae fugiat sit velit qui. Ratione eligendi et
-            eaque eum numquam quia laborum. Aut ea non atque qui ex accusantium.
-          </div>
+      <ui-expansion-panel _id="panel-1" expanded _data='{"product": 1, "name": "Product Name 1"}'>
+        <div slot="summary" class="summary">UI Expansion Panel 1</div>
+        <div slot="details" class="details">
+          Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
+          excepturi nulla. Fuga voluptate aperiam odio consectetur aliquid itaque incidunt quos.
+          Expedita iste vero molestiae fugiat sit velit qui. Ratione eligendi et eaque eum numquam
+          quia laborum. Aut ea non atque qui ex accusantium.
         </div>
       </ui-expansion-panel>
-      <ui-expansion-panel _data='{"product": 2, "name": "Product Name 2"}'>
-        <div slot="header" class="header">UI Expansion Panel 2</div>
-        <div slot="content" class="content">
-          <div>
-            Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum
-            deleniti mollitia quia velit. Dolorem dolorem distinctio sit qui modi tempora quis quia.
-          </div>
+      <ui-expansion-panel _id="panel-2" _data='{"product": 2, "name": "Product Name 2"}'>
+        <div slot="summary" class="summary">UI Expansion Panel 2</div>
+        <div slot="details" class="details">
+          Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum
+          deleniti mollitia quia velit. Dolorem dolorem distinctio sit qui modi tempora quis quia.
         </div>
       </ui-expansion-panel>
-      <ui-expansion-panel _data='{"product": 3, "name": "Product Name 3"}'>
-        <div slot="header" class="header">UI Expansion Panel 3</div>
-        <div slot="content" class="content">
-          <div>
-            Incidunt consequatur reiciendis enim iure voluptatem. Officiis magni et ut sit.
-            Quibusdam et illo quae. Sunt at numquam facere qui nesciunt. Reiciendis sapiente enim
-            natus quisquam blanditiis ea omnis eos. Sequi accusantium quia dicta omnis aut velit.
-          </div>
+      <ui-expansion-panel _id="panel-3" _data='{"product": 3, "name": "Product Name 3"}'>
+        <div slot="summary" class="summary">UI Expansion Panel 3</div>
+        <div slot="details" class="details">
+          Incidunt consequatur reiciendis enim iure voluptatem. Officiis magni et ut sit. Quibusdam
+          et illo quae. Sunt at numquam facere qui nesciunt. Reiciendis sapiente enim natus quisquam
+          blanditiis ea omnis eos. Sequi accusantium quia dicta omnis aut velit.
         </div>
       </ui-expansion-panel>
     </ui-expansion-folder>

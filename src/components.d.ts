@@ -14,7 +14,7 @@ export namespace Components {
     interface UiExpansionFolder {
     }
     /**
-     * A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide details.
      */
     interface UiExpansionPanel {
         /**
@@ -28,18 +28,18 @@ export namespace Components {
          */
         "_id": string | null;
         /**
-          * Collapses the panel to hide the content. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false.
+          * Collapses the panel to hide the details. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false.
           * @returns A promise that resolves once the panel is collapsed.
          */
         "collapse": () => Promise<void>;
         /**
-          * Determines whether the panel can be collapsed by clicking on its header. If set to false, the panel will not collapse when the header is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
+          * Determines whether the panel can be collapsed by clicking on its summary. If set to false, the panel will not collapse when the summary is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
           * @type {boolean}
           * @default true
          */
         "collapsible": boolean;
         /**
-          * Expands the panel to show the content. This method updates the CSS custom property for the expanded height and emits the uiExpansionPanelToggle event with the current state and element reference. It also sets the expanded property to true.
+          * Expands the panel to show the details. This method updates the CSS custom property for the expanded height and emits the uiExpansionPanelToggle event with the current state and element reference. It also sets the expanded property to true.
           * @returns A promise that resolves once the panel is expanded.
          */
         "expand": () => Promise<void>;
@@ -68,7 +68,7 @@ declare global {
         "uiExpansionPanelExpand": UiExpansionPanelDetails;
     }
     /**
-     * A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide details.
      */
     interface HTMLUiExpansionPanelElement extends Components.UiExpansionPanel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUiExpansionPanelElementEventMap>(type: K, listener: (this: HTMLUiExpansionPanelElement, ev: UiExpansionPanelCustomEvent<HTMLUiExpansionPanelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -96,7 +96,7 @@ declare namespace LocalJSX {
     interface UiExpansionFolder {
     }
     /**
-     * A custom expansion panel component that can expand and collapse to show or hide content.
+     * A custom expansion panel component that can expand and collapse to show or hide details.
      */
     interface UiExpansionPanel {
         /**
@@ -110,7 +110,7 @@ declare namespace LocalJSX {
          */
         "_id"?: string | null;
         /**
-          * Determines whether the panel can be collapsed by clicking on its header. If set to false, the panel will not collapse when the header is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
+          * Determines whether the panel can be collapsed by clicking on its summary. If set to false, the panel will not collapse when the summary is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
           * @type {boolean}
           * @default true
          */
@@ -139,7 +139,7 @@ declare module "@stencil/core" {
              */
             "ui-expansion-folder": LocalJSX.UiExpansionFolder & JSXBase.HTMLAttributes<HTMLUiExpansionFolderElement>;
             /**
-             * A custom expansion panel component that can expand and collapse to show or hide content.
+             * A custom expansion panel component that can expand and collapse to show or hide details.
              */
             "ui-expansion-panel": LocalJSX.UiExpansionPanel & JSXBase.HTMLAttributes<HTMLUiExpansionPanelElement>;
         }
