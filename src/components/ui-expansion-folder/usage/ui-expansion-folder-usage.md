@@ -2,20 +2,20 @@
 
 ```html
 <ui-expansion-folder>
-  <ui-expansion-panel expanded>
-    <div slot="summary">UI Expansion Panel Header</div>
+  <ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+    <div slot="summary">UI Expansion Panel 1</div>
     <div slot="details">
-      Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
-      beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet suscipit ea
-      eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+      Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
+      excepturi nulla. Fuga voluptate aperiam odio consectetur aliquid itaque incidunt quos.
+      Expedita iste vero molestiae fugiat sit velit qui. Ratione eligendi et eaque eum numquam quia
+      laborum. Aut ea non atque qui ex accusantium.
     </div>
   </ui-expansion-panel>
-  <ui-expansion-panel>
-    <div slot="summary">UI Expansion Panel Header</div>
+  <ui-expansion-panel _id="panel-2" _data='{"product": 2, "name": "Product Name 2"}'>
+    <div slot="summary">UI Expansion Panel 2</div>
     <div slot="details">
-      Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
-      beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet suscipit ea
-      eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+      Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum
+      deleniti mollitia quia velit. Dolorem dolorem distinctio sit qui modi tempora quis quia.
     </div>
   </ui-expansion-panel>
   <!-- ... -->

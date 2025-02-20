@@ -6,6 +6,8 @@ import { UiExpansionPanelDetails } from './../../types'
  *
  * @slot summary - Content is placed in the summary which toggles the expansion state.
  * @slot details - Content is placed in the details area which is expanded or collapsed.
+ * @part summary - The summary area of the expansion panel.
+ * @part details - The details area of the expansion panel.
  */
 @Component({
   tag: 'ui-expansion-panel',
@@ -266,10 +268,14 @@ export class UiExpansionPanel {
     return (
       <Host>
         <div class="summary" onClick={this.toggleExpanded}>
-          <slot name="summary" />
+          <div part="summary" class="summary-content">
+            <slot name="summary" />
+          </div>
         </div>
         <div class="details" ref={(element) => (this.detailsElement = element)}>
-          <slot name="details" />
+          <div part="details" class="details-content">
+            <slot name="details" />
+          </div>
         </div>
       </Host>
     )

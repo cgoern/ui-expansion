@@ -13,12 +13,13 @@ A custom expansion panel component that can expand and collapse to show or hide 
 # How to use `ui-expansion-panel`
 
 ```html
-<ui-expansion-panel _id="123" _data='{"product": 12345, "name": "Product Name", "quantity": 10}'>
-  <div slot="summary">UI Expansion Panel Header</div>
+<ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+  <div slot="summary">UI Expansion Panel 1</div>
   <div slot="details">
-    Incidunt enim voluptatem ab officiis et dolorem officia ea. Officia necessitatibus molestiae
-    beatae et iste sed. Dolore sint in consequatur similique eos est. Magnam in amet suscipit ea
-    eaque sed quidem. Autem corporis libero quasi recusandae omnis.
+    Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
+    excepturi nulla. Fuga voluptate aperiam odio consectetur aliquid itaque incidunt quos. Expedita
+    iste vero molestiae fugiat sit velit qui. Ratione eligendi et eaque eum numquam quia laborum.
+    Aut ea non atque qui ex accusantium.
   </div>
 </ui-expansion-panel>
 ```
@@ -72,6 +73,13 @@ A promise that resolves once the panel is expanded.
 | `"details"` | Content is placed in the details area which is expanded or collapsed. |
 | `"summary"` | Content is placed in the summary which toggles the expansion state.   |
 
+## Shadow Parts
+
+| Part        | Description                              |
+| ----------- | ---------------------------------------- |
+| `"details"` | The details area of the expansion panel. |
+| `"summary"` | The summary area of the expansion panel. |
+
 ## CSS Custom Properties
 
 | Name                                            | Description                                                                          |
@@ -79,9 +87,9 @@ A promise that resolves once the panel is expanded.
 | `--UI-Expansion-Panel-Background`               | Background of the expansion panel.                                                   |
 | `--UI-Expansion-Panel-BorderRadius`             | Border radius of the expansion panel.                                                |
 | `--UI-Expansion-Panel-BoxShadow`                | Box shadow of the expansion panel.                                                   |
-| `--UI-Expansion-Panel-Details-BoxShadow`        | Box shadow of the expansion panel details.                                           |
 | `--UI-Expansion-Panel-Expanded-Background`      | Background color of the expansion panel when expanded.                               |
 | `--UI-Expansion-Panel-Expanded-BoxShadow`       | Box shadow of the expansion panel when expanded.                                     |
+| `--UI-Expansion-Panel-Summary-Cursor`           | Cursor of the summary element.                                                       |
 | `--UI-Expansion-Panel-TransitionDuration`       | Duration of the transition effect when expanding or collapsing the panel.            |
 | `--UI-Expansion-Panel-TransitionProperty`       | Transition property of the transition effect when expanding or collapsing the panel. |
 | `--UI-Expansion-Panel-TransitionTimingFunction` | Timing function of the transition effect when expanding or collapsing the panel.     |

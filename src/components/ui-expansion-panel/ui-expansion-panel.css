@@ -36,7 +36,9 @@
   /** @prop --UI-Expansion-Panel-Expanded-BoxShadow: Box shadow of the expansion panel when expanded. */
   --UI-Expansion-Panel-BoxShadow: var(
     --UI-Expansion-Panel-Expanded-BoxShadow,
-    inset 0 0 0 0.0625rem oklch(0% 0 0 / 10%)
+    0 0 0 0.0625rem oklch(0% 0 0 / 10%),
+    0 0.25rem 0.5rem -0.25rem oklch(0% 0 0 / 10%),
+    inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%)
   );
 
   /** @prop --UI-Expansion-Panel-BorderRadius: Border radius of the expansion panel when expanded. */
@@ -45,10 +47,12 @@
   --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height, auto);
 }
 
-.details {
-  /** @prop --UI-Expansion-Panel-Details-BoxShadow: Box shadow of the expansion panel details. */
-  box-shadow: var(--UI-Expansion-Panel-Details-BoxShadow, inset 0 1px 0 0 oklch(0% 0 0 / 10%));
+.summary {
+  /** @prop --UI-Expansion-Panel-Summary-Cursor: Cursor of the summary element. */
+  cursor: var(--UI-Expansion-Panel-Summary-Cursor, pointer);
+}
 
+.details {
   transition-duration: var(--UI-Expansion-Panel-TransitionDuration, 0.25s);
   transition-timing-function: var(
     --UI-Expansion-Panel-TransitionTimingFunction,
