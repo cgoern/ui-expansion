@@ -57,7 +57,7 @@ export class UiExpansionPanel {
    * and is typically used to pass contextual information or state that is relevant
    * to the panel's details or behavior.
    *
-   * @type {any}
+   * @type {object | null}
    */
   private dataValue: object | null = null
 
@@ -70,11 +70,20 @@ export class UiExpansionPanel {
   @Element() element!: HTMLUiExpansionPanelElement
 
   /**
-   * Event emitted when the panel is expanded.
-   * This event is triggered whenever the panel is expanded, providing details about the panel's state.
-   * The event detail contains the element reference, the panel's unique identifier, and any associated data.
+   * Event emitted when the expansion panel is toggled.
+   * This event is triggered whenever the panel is expanded or collapsed,
+   * providing details about the current state of the panel, including
+   * a reference to the element, the expanded state, the panel's unique identifier,
+   * and any associated data.
+   *
+   * @event uiExpansionPanelToggle
+   * @type {CustomEvent<UiExpansionPanelDetails>}
+   * @property {HTMLUiExpansionPanelElement} element - The host element of the expansion panel.
+   * @property {boolean} expanded - The current expanded state of the panel.
+   * @property {string | null} id - The unique identifier of the panel.
+   * @property {object | null} data - Any associated data or metadata related to the panel.
    */
-  @Event() uiExpansionPanelExpand!: EventEmitter<UiExpansionPanelDetails>
+  @Event() uiExpansionPanelToggle!: EventEmitter<UiExpansionPanelDetails>
 
   /**
    * Determines whether the panel is expanded or collapsed.
@@ -209,6 +218,13 @@ export class UiExpansionPanel {
     } else {
       this.expand()
     }
+
+    this.uiExpansionPanelToggle.emit({
+      element: this.element,
+      expanded: this.expanded,
+      id: this._id,
+      data: this.dataValue,
+    })
   }
 
   /**
@@ -223,11 +239,6 @@ export class UiExpansionPanel {
   async expand(): Promise<void> {
     this.updateExpandedHeightProperty(`${this.detailsScrollHeight}px`)
     this.expanded = true
-    this.uiExpansionPanelExpand.emit({
-      element: this.element,
-      id: this._id,
-      data: this.dataValue,
-    })
   }
 
   /**

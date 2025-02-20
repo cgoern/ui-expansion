@@ -89,8 +89,8 @@
         const uiExpansionPanels = document.querySelectorAll('ui-expansion-panel')
 
         uiExpansionPanels.forEach((panel) => {
-          panel.addEventListener('uiExpansionPanelExpand', (event) => {
-            console.log('Expanded Panel:', event.detail)
+          panel.addEventListener('uiExpansionPanelToggle', (event) => {
+            console.log('Panel:', event.detail)
           })
         })
       })

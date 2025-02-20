@@ -28,14 +28,15 @@ export class UiExpansionFolder {
   @Element() element!: HTMLUiExpansionFolderElement
 
   /**
-   * Event listener for the 'uiExpansionPanelExpand' event.
-   * This method is triggered whenever an expansion panel within the folder is expanded.
-   * It collapses all other panels except the one that triggered the event.
+   * Event listener for the 'uiExpansionPanelToggle' event.
+   * This method is triggered whenever an expansion panel within the folder is toggled.
+   * It collapses all other panels except the one that was toggled.
    *
-   * @param event - The custom event containing details about the expanded panel.
+   * @param event - The custom event containing details about the toggled panel.
+   * @returns A promise that resolves when all other panels have been collapsed.
    */
-  @Listen('uiExpansionPanelExpand')
-  async listenUiExpansionPanelExpand(event: CustomEvent<UiExpansionPanelDetails>): Promise<void> {
+  @Listen('uiExpansionPanelToggle')
+  async listenUiExpansionPanelToggle(event: CustomEvent<UiExpansionPanelDetails>): Promise<void> {
     const collapsiblePanels = this.panels.filter((panel) => panel !== event.detail.element)
 
     try {

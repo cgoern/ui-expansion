@@ -65,7 +65,7 @@ declare global {
         new (): HTMLUiExpansionFolderElement;
     };
     interface HTMLUiExpansionPanelElementEventMap {
-        "uiExpansionPanelExpand": UiExpansionPanelDetails;
+        "uiExpansionPanelToggle": UiExpansionPanelDetails;
     }
     /**
      * A custom expansion panel component that can expand and collapse to show or hide details.
@@ -121,9 +121,15 @@ declare namespace LocalJSX {
          */
         "expanded"?: boolean;
         /**
-          * Event emitted when the panel is expanded. This event is triggered whenever the panel is expanded, providing details about the panel's state. The event detail contains the element reference, the panel's unique identifier, and any associated data.
+          * Event emitted when the expansion panel is toggled. This event is triggered whenever the panel is expanded or collapsed, providing details about the current state of the panel, including a reference to the element, the expanded state, the panel's unique identifier, and any associated data.
+          * @event uiExpansionPanelToggle
+          * @type {CustomEvent<UiExpansionPanelDetails>}
+          * @property {HTMLUiExpansionPanelElement} element - The host element of the expansion panel.
+          * @property {boolean} expanded - The current expanded state of the panel.
+          * @property {string | null} id - The unique identifier of the panel.
+          * @property {object | null} data - Any associated data or metadata related to the panel.
          */
-        "onUiExpansionPanelExpand"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
+        "onUiExpansionPanelToggle"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
     }
     interface IntrinsicElements {
         "ui-expansion-folder": UiExpansionFolder;

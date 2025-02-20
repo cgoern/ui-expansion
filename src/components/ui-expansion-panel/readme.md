@@ -34,9 +34,9 @@ A custom expansion panel component that can expand and collapse to show or hide 
 
 ## Events
 
-| Event                    | Description                                                                                                                                                                                                                                           | Type                                                                                 |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `uiExpansionPanelExpand` | Event emitted when the panel is expanded. This event is triggered whenever the panel is expanded, providing details about the panel's state. The event detail contains the element reference, the panel's unique identifier, and any associated data. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; id?: string; data?: object; }>` |
+| Event                    | Description                                                                                                                                                                                                                                                                                       | Type                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `uiExpansionPanelToggle` | Event emitted when the expansion panel is toggled. This event is triggered whenever the panel is expanded or collapsed, providing details about the current state of the panel, including a reference to the element, the expanded state, the panel's unique identifier, and any associated data. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; expanded: boolean; id: string; data: object; }>` |
 
 ## Methods
 
