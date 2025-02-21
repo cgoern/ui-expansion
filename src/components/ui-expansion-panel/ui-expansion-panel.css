@@ -20,6 +20,17 @@
   will-change: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow);
 }
 
+@media (hover: hover) {
+  :host(:hover) {
+    /** @prop --UI-Expansion-Panel-Hover-Background: Background color of the expansion panel when hovered. */
+
+    --UI-Expansion-Panel-Background: var(
+      --UI-Expansion-Panel-Hover-Background,
+      oklch(0% 0 0 / 10%)
+    );
+  }
+}
+
 :host([expanded]) {
   /** @prop --UI-Expansion-Panel-Expanded-Background: Background color of the expansion panel when expanded. */
   /** @prop --UI-Expansion-Panel-Expanded-BoxShadow: Box shadow of the expansion panel when expanded. */

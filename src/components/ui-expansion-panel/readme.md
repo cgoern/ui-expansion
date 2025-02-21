@@ -108,6 +108,7 @@ or null if no data is available.
 | `--UI-Expansion-Panel-Expanded-Background`      | Background color of the expansion panel when expanded.                               |
 | `--UI-Expansion-Panel-Expanded-BoxShadow`       | Box shadow of the expansion panel when expanded.                                     |
 | `--UI-Expansion-Panel-Expanded-Summary-Cursor`  | Cursor of the summary element when expanded.                                         |
+| `--UI-Expansion-Panel-Hover-Background`         | Background color of the expansion panel when hovered.                                |
 | `--UI-Expansion-Panel-Summary-Cursor`           | Cursor of the summary element.                                                       |
 | `--UI-Expansion-Panel-TransitionDuration`       | Duration of the transition effect when expanding or collapsing the panel.            |
 | `--UI-Expansion-Panel-TransitionProperty`       | Transition property of the transition effect when expanding or collapsing the panel. |
