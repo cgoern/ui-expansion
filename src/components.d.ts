@@ -18,17 +18,7 @@ export namespace Components {
      */
     interface UiExpansionPanel {
         /**
-          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
-          * @type {any}
-         */
-        "_data": string | null;
-        /**
-          * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
-          * @type {string}
-         */
-        "_id": string | null;
-        /**
-          * Collapses the panel to hide the details. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false.
+          * Collapses the panel to hide the details. This method updates the CSS custom property for the expanded height to 0px, schedules an animation frame to apply the height change, and sets the expanded property to false. It ensures that the panel transitions smoothly to its collapsed state, making the details content hidden. The method returns a promise that resolves once the panel is collapsed.
           * @returns A promise that resolves once the panel is collapsed.
          */
         "collapse": () => Promise<void>;
@@ -39,7 +29,12 @@ export namespace Components {
          */
         "collapsible": boolean;
         /**
-          * Expands the panel to show the details. This method updates the CSS custom property for the expanded height and emits the uiExpansionPanelToggle event with the current state and element reference. It also sets the expanded property to true.
+          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
+          * @type {any}
+         */
+        "data": string | null;
+        /**
+          * Expands the panel to show the details. This method updates the CSS custom property for the expanded height and sets the expanded property to true. It ensures that the panel transitions smoothly to its expanded state, making the details content fully visible. The method returns a promise that resolves once the panel is expanded.
           * @returns A promise that resolves once the panel is expanded.
          */
         "expand": () => Promise<void>;
@@ -49,10 +44,10 @@ export namespace Components {
          */
         "expanded": boolean;
         /**
-          * Retrieves the data associated with the expansion panel. This method returns the dataValue property, which contains any additional information or metadata that has been associated with the expansion panel.
+          * Retrieves the data associated with the expansion panel. This method returns the _data property, which contains any additional information or metadata that has been associated with the expansion panel. It provides a way to access the contextual information or state that is relevant to the panel's details or behavior.
           * @returns A promise that resolves to the data associated with the panel, or null if no data is available.
          */
-        "getData": () => Promise<object | null>;
+        "getData": () => Promise<unknown | null>;
     }
 }
 export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
@@ -105,21 +100,16 @@ declare namespace LocalJSX {
      */
     interface UiExpansionPanel {
         /**
-          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
-          * @type {any}
-         */
-        "_data"?: string | null;
-        /**
-          * A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.
-          * @type {string}
-         */
-        "_id"?: string | null;
-        /**
           * Determines whether the panel can be collapsed by clicking on its summary. If set to false, the panel will not collapse when the summary is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels.
           * @type {boolean}
           * @default true
          */
         "collapsible"?: boolean;
+        /**
+          * Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.
+          * @type {any}
+         */
+        "data"?: string | null;
         /**
           * Determines whether the panel is expanded or collapsed.
           * @default false
@@ -131,8 +121,7 @@ declare namespace LocalJSX {
           * @type {CustomEvent<UiExpansionPanelDetails>}
           * @property {HTMLUiExpansionPanelElement} element - The host element of the expansion panel.
           * @property {boolean} expanded - The current expanded state of the panel.
-          * @property {string | null} id - The unique identifier of the panel.
-          * @property {object | null} data - Any associated data or metadata related to the panel.
+          * @property {unknown | null} data - Any associated data or metadata related to the panel.
          */
         "onUiExpansionPanelToggle"?: (event: UiExpansionPanelCustomEvent<UiExpansionPanelDetails>) => void;
     }

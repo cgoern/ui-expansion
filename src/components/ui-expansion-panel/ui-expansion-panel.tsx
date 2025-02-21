@@ -59,9 +59,9 @@ export class UiExpansionPanel {
    * and is typically used to pass contextual information or state that is relevant
    * to the panel's details or behavior.
    *
-   * @type {object | null}
+   * @type {unknown | null}
    */
-  private dataValue: object | null = null
+  private _data: unknown | null = null
 
   /**
    * The host element of the component.
@@ -82,8 +82,7 @@ export class UiExpansionPanel {
    * @type {CustomEvent<UiExpansionPanelDetails>}
    * @property {HTMLUiExpansionPanelElement} element - The host element of the expansion panel.
    * @property {boolean} expanded - The current expanded state of the panel.
-   * @property {string | null} id - The unique identifier of the panel.
-   * @property {object | null} data - Any associated data or metadata related to the panel.
+   * @property {unknown | null} data - Any associated data or metadata related to the panel.
    */
   @Event() uiExpansionPanelToggle!: EventEmitter<UiExpansionPanelDetails>
 
@@ -106,15 +105,6 @@ export class UiExpansionPanel {
   @Prop() collapsible: boolean = true
 
   /**
-   * A unique identifier for the expansion panel.
-   * This property can be used to distinguish between multiple expansion panels
-   * in the same context, allowing for better management and control of individual panels.
-   *
-   * @type {string}
-   */
-  @Prop() _id: string | null = null
-
-  /**
    * Data to be used within the expansion panel.
    * This property can be used to pass any data that needs to be accessed or displayed
    * within the expansion panel. The data can be of any type and is parsed from a JSON string
@@ -122,12 +112,13 @@ export class UiExpansionPanel {
    *
    * @type {any}
    */
-  @Prop() _data: string | null = null
+  @Prop() data: string | null = null
 
   /**
    * Lifecycle method that is called when the component is first connected to the DOM.
    * Initializes the ResizeObserver to monitor changes in the details element's size
    * and sets up the styleSheets property to manage CSS custom properties.
+   * Parses the data property if provided and logs a warning if parsing fails.
    */
   componentWillLoad() {
     this.resizeObserver = new ResizeObserver(this.updateDetailsScrollHeight)
@@ -136,11 +127,11 @@ export class UiExpansionPanel {
       ? this.element.shadowRoot.adoptedStyleSheets
       : this.element.shadowRoot.styleSheets
 
-    if (this._data) {
+    if (this.data) {
       try {
-        this.dataValue = JSON.parse(this._data)
+        this._data = JSON.parse(this.data)
       } catch (error) {
-        console.error('Failed to parse _data:', error)
+        console.warn('Failed to parse data:', error)
       }
     }
   }
@@ -149,6 +140,8 @@ export class UiExpansionPanel {
    * Lifecycle method that is called once the component has loaded.
    * Sets up a ResizeObserver to monitor changes in the details element's size
    * and adds an event listener for the transitionend event.
+   * This ensures that the component can respond to size changes and transition
+   * events appropriately, maintaining the correct expanded or collapsed state.
    */
   componentDidLoad() {
     this.resizeObserver.observe(this.detailsElement)
@@ -171,6 +164,10 @@ export class UiExpansionPanel {
 
   /**
    * Updates the scroll height of the details element.
+   * This method is called by the ResizeObserver whenever the size of the details element changes.
+   * It compares the observed scroll height with the current stored scroll height,
+   * and updates the stored value if there is a difference. This ensures that the component
+   * can accurately calculate the expanded height during transitions.
    */
   private updateDetailsScrollHeight = (): void => {
     const observedDetailsScrollHeight = this.detailsElement.scrollHeight
@@ -182,8 +179,14 @@ export class UiExpansionPanel {
 
   /**
    * Updates the CSS custom property for the expanded height of the details element.
+   * This method dynamically sets the value of the --UI-Expansion-Panel-Details-Expanded-Height
+   * custom property, which is used to control the height of the details element during
+   * expansion and collapse transitions. It ensures that the correct height is applied
+   * based on the current state of the panel.
    *
-   * @param {string} value - The value to set for the expanded height.
+   * @param {string} value - The value to set for the expanded height. This can be a specific
+   * height in pixels (e.g., '200px') or 'auto' to allow the details element to expand
+   * to its natural height.
    */
   private updateExpandedHeightProperty = (value: string): void => {
     const rule = `:host {--UI-Expansion-Panel-Details-Expanded-Height: ${value}}`
@@ -199,8 +202,13 @@ export class UiExpansionPanel {
 
   /**
    * Handles the transitionend event to set the expanded height to 'auto' after the transition ends.
+   * This method is called whenever a CSS transition on the 'height' property completes.
+   * If the panel is in the expanded state, it updates the CSS custom property for the expanded height
+   * to 'auto', allowing the details element to adjust to its natural height. This ensures that the
+   * details content is fully visible and not constrained by a fixed height.
    *
-   * @param {TransitionEvent} event - The transitionend event.
+   * @param {TransitionEvent} event - The transitionend event object, which provides details about
+   * the completed transition, including the name of the transitioned property.
    */
   private handleTransitionEnd = (event: TransitionEvent): void => {
     if (event.propertyName === 'height' && this.expanded) {
@@ -213,6 +221,7 @@ export class UiExpansionPanel {
    * This method is called when the summary is clicked, and it schedules an animation frame
    * to either expand or collapse the panel based on its current state.
    * If an animation frame is already scheduled, it cancels the pending frame before scheduling a new one.
+   * It also emits the uiExpansionPanelToggle event with the current state and element reference.
    */
   private toggleExpanded = (): void => {
     if (this.expanded && this.collapsible) {
@@ -224,16 +233,17 @@ export class UiExpansionPanel {
     this.uiExpansionPanelToggle.emit({
       element: this.element,
       expanded: this.expanded,
-      id: this._id,
-      data: this.dataValue,
+      data: this._data,
     })
   }
 
   /**
    * Expands the panel to show the details.
    * This method updates the CSS custom property for the expanded height
-   * and emits the uiExpansionPanelToggle event with the current state and element reference.
-   * It also sets the expanded property to true.
+   * and sets the expanded property to true. It ensures that the panel
+   * transitions smoothly to its expanded state, making the details content
+   * fully visible. The method returns a promise that resolves once the
+   * panel is expanded.
    *
    * @returns {Promise<void>} A promise that resolves once the panel is expanded.
    */
@@ -247,6 +257,8 @@ export class UiExpansionPanel {
    * Collapses the panel to hide the details.
    * This method updates the CSS custom property for the expanded height to 0px,
    * schedules an animation frame to apply the height change, and sets the expanded property to false.
+   * It ensures that the panel transitions smoothly to its collapsed state, making the details content
+   * hidden. The method returns a promise that resolves once the panel is collapsed.
    *
    * @returns {Promise<void>} A promise that resolves once the panel is collapsed.
    */
@@ -263,15 +275,17 @@ export class UiExpansionPanel {
 
   /**
    * Retrieves the data associated with the expansion panel.
-   * This method returns the dataValue property, which contains any additional information
+   * This method returns the _data property, which contains any additional information
    * or metadata that has been associated with the expansion panel.
+   * It provides a way to access the contextual information or state that is relevant
+   * to the panel's details or behavior.
    *
-   * @returns {Promise<object | null>} A promise that resolves to the data associated with the panel,
+   * @returns {Promise<unknown | null>} A promise that resolves to the data associated with the panel,
    * or null if no data is available.
    */
   @Method()
-  async getData(): Promise<object | null> {
-    return this.dataValue
+  async getData(): Promise<unknown | null> {
+    return this._data
   }
 
   /**

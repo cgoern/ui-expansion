@@ -13,7 +13,7 @@ A custom expansion panel component that can expand and collapse to show or hide 
 # How to use `ui-expansion-panel`
 
 ```html
-<ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+<ui-expansion-panel expanded data='{"product": 1, "name": "Product Name 1"}'>
   <div slot="summary">UI Expansion Panel 1</div>
   <div slot="details">
     Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
@@ -28,16 +28,15 @@ A custom expansion panel component that can expand and collapse to show or hide 
 
 | Property      | Attribute     | Description                                                                                                                                                                                                                                                                                                                                                                      | Type      | Default |
 | ------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
-| `_data`       | `_data`       | Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.                                                                                                                                      | `string`  | `null`  |
-| `_id`         | `_id`         | A unique identifier for the expansion panel. This property can be used to distinguish between multiple expansion panels in the same context, allowing for better management and control of individual panels.                                                                                                                                                                    | `string`  | `null`  |
 | `collapsible` | `collapsible` | Determines whether the panel can be collapsed by clicking on its summary. If set to false, the panel will not collapse when the summary is clicked. This property is useful when you want to enforce that the panel remains expanded until another panel is expanded, typically used in conjunction with a parent component that manages the expansion state of multiple panels. | `boolean` | `true`  |
+| `data`        | `data`        | Data to be used within the expansion panel. This property can be used to pass any data that needs to be accessed or displayed within the expansion panel. The data can be of any type and is parsed from a JSON string if provided as such.                                                                                                                                      | `string`  | `null`  |
 | `expanded`    | `expanded`    | Determines whether the panel is expanded or collapsed.                                                                                                                                                                                                                                                                                                                           | `boolean` | `false` |
 
 ## Events
 
-| Event                    | Description                                                                                                                                                                                                                                                                                       | Type                                                                                                  |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `uiExpansionPanelToggle` | Event emitted when the expansion panel is toggled. This event is triggered whenever the panel is expanded or collapsed, providing details about the current state of the panel, including a reference to the element, the expanded state, the panel's unique identifier, and any associated data. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; expanded: boolean; id: string; data: object; }>` |
+| Event                    | Description                                                                                                                                                                                                                                                                                       | Type                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `uiExpansionPanelToggle` | Event emitted when the expansion panel is toggled. This event is triggered whenever the panel is expanded or collapsed, providing details about the current state of the panel, including a reference to the element, the expanded state, the panel's unique identifier, and any associated data. | `CustomEvent<{ element: HTMLUiExpansionPanelElement; expanded: boolean; data: unknown; }>` |
 
 ## Methods
 
@@ -46,6 +45,8 @@ A custom expansion panel component that can expand and collapse to show or hide 
 Collapses the panel to hide the details.
 This method updates the CSS custom property for the expanded height to 0px,
 schedules an animation frame to apply the height change, and sets the expanded property to false.
+It ensures that the panel transitions smoothly to its collapsed state, making the details content
+hidden. The method returns a promise that resolves once the panel is collapsed.
 
 #### Returns
 
@@ -57,8 +58,10 @@ A promise that resolves once the panel is collapsed.
 
 Expands the panel to show the details.
 This method updates the CSS custom property for the expanded height
-and emits the uiExpansionPanelToggle event with the current state and element reference.
-It also sets the expanded property to true.
+and sets the expanded property to true. It ensures that the panel
+transitions smoothly to its expanded state, making the details content
+fully visible. The method returns a promise that resolves once the
+panel is expanded.
 
 #### Returns
 
@@ -66,15 +69,17 @@ Type: `Promise<void>`
 
 A promise that resolves once the panel is expanded.
 
-### `getData() => Promise<object | null>`
+### `getData() => Promise<unknown | null>`
 
 Retrieves the data associated with the expansion panel.
-This method returns the dataValue property, which contains any additional information
+This method returns the \_data property, which contains any additional information
 or metadata that has been associated with the expansion panel.
+It provides a way to access the contextual information or state that is relevant
+to the panel's details or behavior.
 
 #### Returns
 
-Type: `Promise<object>`
+Type: `Promise<unknown>`
 
 A promise that resolves to the data associated with the panel,
 or null if no data is available.

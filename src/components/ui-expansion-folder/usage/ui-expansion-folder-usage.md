@@ -2,7 +2,7 @@
 
 ```html
 <ui-expansion-folder>
-  <ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+  <ui-expansion-panel expanded data='{"product": 1, "name": "Product Name 1"}'>
     <div slot="summary">UI Expansion Panel 1</div>
     <div slot="details">
       Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
@@ -11,7 +11,7 @@
       laborum. Aut ea non atque qui ex accusantium.
     </div>
   </ui-expansion-panel>
-  <ui-expansion-panel _id="panel-2" _data='{"product": 2, "name": "Product Name 2"}'>
+  <ui-expansion-panel data='{"product": 2, "name": "Product Name 2"}'>
     <div slot="summary">UI Expansion Panel 2</div>
     <div slot="details">
       Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum

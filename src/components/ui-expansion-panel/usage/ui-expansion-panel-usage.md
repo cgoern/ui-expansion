@@ -1,7 +1,7 @@
 # How to use `ui-expansion-panel`
 
 ```html
-<ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+<ui-expansion-panel expanded data='{"product": 1, "name": "Product Name 1"}'>
   <div slot="summary">UI Expansion Panel 1</div>
   <div slot="details">
     Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur

@@ -8,11 +8,6 @@
     <script nomodule src="/build/ui-expansion.js"></script>
     <style>
       :root {
-        /* --UI-Expansion-Panel-Expanded-BoxShadow:
-          0 0 0 0.0625rem oklch(0% 0 0 / 10%), 0 0.25rem 1rem -0.25rem oklch(0% 0 0 / 10%),
-          0 0.5rem 2rem -0.5rem oklch(0% 0 0 / 10%), 0 1rem 4rem -1rem oklch(0% 0 0 / 10%),
-          0 2rem 8rem -2rem oklch(0% 0 0 / 10%), inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%); */
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -60,7 +55,7 @@
   <body>
     <h1>UI Expansion</h1>
     <ui-expansion-folder>
-      <ui-expansion-panel expanded _id="panel-1" _data='{"product": 1, "name": "Product Name 1"}'>
+      <ui-expansion-panel expanded data='{"product": 1, "name": "Product Name 1"}'>
         <div slot="summary">UI Expansion Panel 1</div>
         <div slot="details">
           Recusandae quod aspernatur vitae ut adipisci ut. Et quas nulla optio nemo aut consequuntur
@@ -69,14 +64,14 @@
           quia laborum. Aut ea non atque qui ex accusantium.
         </div>
       </ui-expansion-panel>
-      <ui-expansion-panel _id="panel-2" _data='{"product": 2, "name": "Product Name 2"}'>
+      <ui-expansion-panel data='{"product": 2, "name": "Product Name 2"}'>
         <div slot="summary">UI Expansion Panel 2</div>
         <div slot="details">
           Cum rerum ullam consequuntur non repudiandae ipsa eius eius. Quae error sequi ipsum cum
           deleniti mollitia quia velit. Dolorem dolorem distinctio sit qui modi tempora quis quia.
         </div>
       </ui-expansion-panel>
-      <ui-expansion-panel _id="panel-3" _data='{"product": 3, "name": "Product Name 3"}'>
+      <ui-expansion-panel data='{"product": 3, "name": "Product Name 3"}'>
         <div slot="summary">UI Expansion Panel 3</div>
         <div slot="details">
           Incidunt consequatur reiciendis enim iure voluptatem. Officiis magni et ut sit. Quibusdam

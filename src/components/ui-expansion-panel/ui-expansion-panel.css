@@ -1,60 +1,53 @@
 :host {
   /** @prop --UI-Expansion-Panel-Background: Background of the expansion panel. */
-  background: var(--UI-Expansion-Panel-Background, oklch(0% 0 0 / 5%));
-
-  /** @prop --UI-Expansion-Panel-BoxShadow: Box shadow of the expansion panel. */
-  box-shadow: var(--UI-Expansion-Panel-BoxShadow, inset 0 0 0 0.0625rem oklch(0% 0 0 / 10%));
-
   /** @prop --UI-Expansion-Panel-BorderRadius: Border radius of the expansion panel. */
-  border-radius: var(--UI-Expansion-Panel-BorderRadius, 0.25rem);
-
-  /** @prop --UI-Expansion-Panel-TransitionProperty: Transition property of the transition effect when expanding or collapsing the panel. */
-  transition-property: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow);
-
+  /** @prop --UI-Expansion-Panel-BoxShadow: Box shadow of the expansion panel. */
+  /** @prop --UI-Expansion-Panel-Summary-Cursor: Cursor of the summary element. */
   /** @prop --UI-Expansion-Panel-TransitionDuration: Duration of the transition effect when expanding or collapsing the panel. */
-  transition-duration: var(--UI-Expansion-Panel-TransitionDuration, 0.25s);
-
+  /** @prop --UI-Expansion-Panel-TransitionProperty: Transition property of the transition effect when expanding or collapsing the panel. */
   /** @prop --UI-Expansion-Panel-TransitionTimingFunction: Timing function of the transition effect when expanding or collapsing the panel. */
+
+  background: var(--UI-Expansion-Panel-Background, oklch(0% 0 0 / 5%));
+  border-radius: var(--UI-Expansion-Panel-BorderRadius, 0.25rem);
+  box-shadow: var(--UI-Expansion-Panel-BoxShadow, inset 0 0 0 0.0625rem oklch(0% 0 0 / 10%));
+  display: block;
+  transition-duration: var(--UI-Expansion-Panel-TransitionDuration, 0.25s);
+  transition-property: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow);
   transition-timing-function: var(
     --UI-Expansion-Panel-TransitionTimingFunction,
     cubic-bezier(0.25, 1, 0.5, 1)
   );
-
-  display: block;
-  will-change: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow, border-radius);
+  will-change: var(--UI-Expansion-Panel-TransitionProperty, background, box-shadow);
 }
 
 :host([expanded]) {
   /** @prop --UI-Expansion-Panel-Expanded-Background: Background color of the expansion panel when expanded. */
-  --UI-Expansion-Panel-Background: var(--UI-Expansion-Panel-Expanded-Background, oklch(100% 0 0));
-
   /** @prop --UI-Expansion-Panel-Expanded-BoxShadow: Box shadow of the expansion panel when expanded. */
+  /** @prop --UI-Expansion-Panel-Expanded-Summary-Cursor: Cursor of the summary element when expanded. */
+
+  --UI-Expansion-Panel-Background: var(--UI-Expansion-Panel-Expanded-Background, oklch(100% 0 0));
   --UI-Expansion-Panel-BoxShadow: var(
     --UI-Expansion-Panel-Expanded-BoxShadow,
     0 0 0 0.0625rem oklch(0% 0 0 / 10%),
     0 0.25rem 0.5rem -0.25rem oklch(0% 0 0 / 10%),
     inset 0 0 0 0.0625rem oklch(0% 0 0 / 0%)
   );
-
-  /** @prop --UI-Expansion-Panel-Expanded-Summary-Cursor: Cursor of the summary element when expanded. */
-  --UI-Expansion-Panel-Summary-Cursor: var(--UI-Expansion-Panel-Expanded-Summary-Cursor, pointer);
-
   --UI-Expansion-Panel-Details-Height: var(--UI-Expansion-Panel-Details-Expanded-Height, auto);
+  --UI-Expansion-Panel-Summary-Cursor: var(--UI-Expansion-Panel-Expanded-Summary-Cursor, pointer);
 }
 
 .summary {
-  /** @prop --UI-Expansion-Panel-Summary-Cursor: Cursor of the summary element. */
   cursor: var(--UI-Expansion-Panel-Summary-Cursor, pointer);
 }
 
 .details {
+  height: var(--UI-Expansion-Panel-Details-Height, 0);
+  overflow: hidden;
   transition-duration: var(--UI-Expansion-Panel-TransitionDuration, 0.25s);
+  transition-property: height;
   transition-timing-function: var(
     --UI-Expansion-Panel-TransitionTimingFunction,
     cubic-bezier(0.25, 1, 0.5, 1)
   );
-  transition-property: height;
-  height: var(--UI-Expansion-Panel-Details-Height, 0);
-  overflow: hidden;
   will-change: height;
 }
