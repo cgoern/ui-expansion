@@ -222,8 +222,11 @@ export class UiExpansionPanel {
    * to either expand or collapse the panel based on its current state.
    * If an animation frame is already scheduled, it cancels the pending frame before scheduling a new one.
    * It also emits the uiExpansionPanelToggle event with the current state and element reference.
+   *
+   * @returns {Promise<void>} A promise that resolves when the panel has been toggled.
    */
-  private toggleExpanded = (): void => {
+  @Method()
+  async toggle(): Promise<void> {
     if (this.expanded && this.collapsible) {
       this.collapse()
     } else {
@@ -294,7 +297,7 @@ export class UiExpansionPanel {
   render() {
     return (
       <Host>
-        <div class="summary" onClick={this.toggleExpanded}>
+        <div class="summary" onClick={async () => await this.toggle()}>
           <div part="summary" class="summary-content">
             <slot name="summary" />
           </div>

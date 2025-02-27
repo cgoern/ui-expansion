@@ -48,6 +48,11 @@ export namespace Components {
           * @returns A promise that resolves to the data associated with the panel, or null if no data is available.
          */
         "getData": () => Promise<unknown | null>;
+        /**
+          * Toggles the expanded state of the panel. This method is called when the summary is clicked, and it schedules an animation frame to either expand or collapse the panel based on its current state. If an animation frame is already scheduled, it cancels the pending frame before scheduling a new one. It also emits the uiExpansionPanelToggle event with the current state and element reference.
+          * @returns A promise that resolves when the panel has been toggled.
+         */
+        "toggle": () => Promise<void>;
     }
 }
 export interface UiExpansionPanelCustomEvent<T> extends CustomEvent<T> {
